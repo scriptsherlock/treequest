@@ -1,0 +1,12 @@
+{
+  "name": "branch-decision-tree-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A buildless decision tree classroom lab for Years 6–9",
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "test": "node --test tests/classifier.test.cjs",
+    "check": "node --check classifier.js && node --check app.js && node --test tests/classifier.test.cjs",
+    "package": "node scripts/package.cjs"
+  }
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#273f2b">
+  <meta name="description" content="Build, test and challenge a decision tree. An interactive machine learning lab for Years 6–9.">
+  <title>Tree Quest — Build a decision tree</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./classifier.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to the lab</a>
+  <header class="site-header">
+    <a href="./" class="brand" aria-label="Tree Quest home"><span class="brand-tree" aria-hidden="true">🌳</span><span>TREE QUEST</span></a>
+    <span class="header-caption">A decision tree adventure</span>
+    <nav class="header-actions" aria-label="Project actions">
+      <button class="button small quiet" data-action="help">❓ Help</button>
+      <details class="project-menu"><summary>🎒 Project <span aria-hidden="true">▾</span></summary><div class="project-menu-items"><button data-action="edit">📝 Edit data & questions</button><button data-action="new">✨ Your own project</button><button data-action="save">💾 Save project</button><button data-action="open">📂 Open project</button><button data-action="reset">↺ Start tree again</button><button data-action="teacher">📖 Teacher notes</button></div></details>
+    </nav>
+  </header>
+
+  <main>
+    <section id="workspace" class="lab" aria-label="Interactive decision tree lab" tabindex="-1">
+      <div class="lab-topbar">
+        <div class="project-heading"><span class="project-mark" aria-hidden="true">⚔️</span><div><div class="eyebrow">YOUR WORLD</div><h1 id="project-name">Game item classifier</h1></div></div>
+        <div class="topbar-actions"><button class="button accent big" data-action="add-example">➕ Add an example</button><button class="button" data-action="edit">✏️ Add a question</button></div>
+      </div>
+      <div class="lab-navigation">
+        <div class="mode-tabs" role="tablist" aria-label="Lab stages"><button id="tab-build" role="tab" aria-selected="true" aria-controls="lab-panel" data-mode="build">🧱 Build</button><button id="tab-test" role="tab" aria-selected="false" aria-controls="lab-panel" data-mode="test" tabindex="-1">🎯 Test</button><button id="tab-challenge" role="tab" aria-selected="false" aria-controls="lab-panel" data-mode="challenge" tabindex="-1">⚡ Challenge</button></div>
+      </div>
+      <div id="stage-guidance" class="stage-guidance"></div>
+      <div id="lab-panel" role="tabpanel" aria-labelledby="tab-build" class="lab-grid">
+        <details class="data-panel" aria-label="Example data"><summary>🎒 See all the items <span id="data-count" class="count-pill">15</span></summary><div class="data-content"><div class="panel-heading"><h3 id="data-heading">Training examples</h3></div><p id="data-caption" class="panel-caption"></p><div id="data-filter" class="data-filter"></div><div id="data-list" class="data-list"></div><div id="data-footer" class="data-footer"></div></div></details>
+        <section class="tree-panel" aria-label="Your decision tree"><div class="tree-toolbar"><div><span class="eyebrow">🌳 YOUR TREE</span><div id="tree-subtitle" class="tree-subtitle">One question at a time.</div></div><div class="tree-tools"><button class="button small quiet" data-action="undo" title="Undo last change" aria-label="Undo last change">↶ Undo</button><details class="view-menu"><summary>🔍 View</summary><div><button class="icon-button" data-action="zoom-out" title="Zoom out" aria-label="Zoom out">−</button><button class="icon-button" data-action="zoom-in" title="Zoom in" aria-label="Zoom in">＋</button></div></details></div></div><div id="tree-canvas" class="tree-canvas" tabindex="0" aria-label="Tree diagram. Scroll to explore larger trees."></div><div id="tree-legend" class="tree-legend"></div><details class="tree-metrics"><summary>📊 Look closer at the results</summary><div id="tree-stats" class="tree-stats"></div></details></section>
+        <aside id="inspector" class="inspector" aria-label="Question builder and predictions"></aside>
+      </div>
+      <div class="lab-bottom"><span>💡 Teach your tree more: every example you add helps it learn.</span><div class="lab-bottom-actions"><button class="button accent big" data-action="add-example">➕ Add an example</button><button class="button" data-action="edit">✏️ Add a question</button></div></div>
+    </section>
+
+    <footer class="site-footer"><span>🌱 Your questions. Your tree.</span><span>Works offline · Save your project before leaving.</span></footer>
+  </main>
+  <dialog id="editor-dialog" class="dialog wide-dialog" aria-labelledby="editor-title"><div id="editor-content"></div></dialog>
+  <dialog id="info-dialog" class="dialog" aria-labelledby="info-title"><div id="info-content"></div></dialog>
+  <dialog id="new-dialog" class="dialog" aria-labelledby="new-title"><form id="new-project-form"><div class="dialog-heading"><div><div class="eyebrow">MAKE IT YOURS</div><h2 id="new-title">What will your tree predict?</h2></div><button type="button" class="icon-button" data-close="new-dialog" aria-label="Close new project">×</button></div><p>Pick a topic, decide your labels, then add examples and questions. Start with objects, games or fictional data.</p><label>Project name<input name="name" required maxlength="70" placeholder="e.g. My music sorter"></label><label>Categories, separated by commas<input name="labels" required maxlength="160" placeholder="e.g. Study, Workout, Relax"></label><p class="field-help">Use 2–6 different categories. You supply the correct labels; the tree looks for patterns.</p><div class="dialog-actions"><button type="button" class="button quiet" data-close="new-dialog">Cancel</button><button class="button primary" type="submit">Create my project →</button></div></form></dialog>
+  <input id="project-file" type="file" accept=".json,application/json" hidden>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">Enable JavaScript to use the decision tree lab. It runs locally in your browser.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0}
+    a{color:#0B6E3C}
+    a:hover{color:#0B6E3C;text-decoration:underline}
+    @keyframes stamp{0%{transform:scale(1.08)}100%{transform:scale(1)}}
+    @keyframes fadeUp{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
+  </style>
+</helmet>
+
+<div style="min-height:100vh;background:#EAEFE9;font-family:'Inter',sans-serif;color:#20262A;display:flex;flex-direction:column">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;background:#FFFFFF;border-bottom:3px solid #20262A;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em">Classification: Decision Tree</div>
+    </div>
+    <div style="display:flex;gap:6px">
+      <sc-for list="{{ dots }}" as="dot" hint-placeholder-count="7">
+        <button type="button" onClick="{{ dot.onClick }}" aria-label="{{ dot.label }}" style-focus="outline:3px solid #F0A81C;outline-offset:2px" style="{{ dot.style }}"></button>
+      </sc-for>
+    </div>
+  </div>
+
+  <main style="flex:1;width:100%;max-width:860px;margin:0 auto;padding:28px 20px 40px">
+
+    <sc-if value="{{ isBeat1 }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,5vw,38px);letter-spacing:-0.02em;margin-bottom:8px">What fits in my school bag?</div>
+        <div style="font-size:17px;opacity:0.75;margin-bottom:22px">Which of these can I bring to school in my bag?</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:12px;margin-bottom:22px;max-width:620px">
+          <div style="background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:20px 8px;text-align:center">
+            <div style="font-size:44px">🍎</div>
+            <div style="font-family:'Space Mono',monospace;font-size:13px;margin-top:8px">apple</div>
+          </div>
+          <div style="background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:20px 8px;text-align:center">
+            <div style="font-size:44px">📏</div>
+            <div style="font-family:'Space Mono',monospace;font-size:13px;margin-top:8px">ruler</div>
+          </div>
+          <div style="background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:20px 8px;text-align:center">
+            <div style="font-size:44px">🍱</div>
+            <div style="font-family:'Space Mono',monospace;font-size:13px;margin-top:8px">lunch box</div>
+          </div>
+          <div style="background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:20px 8px;text-align:center">
+            <div style="font-size:44px">⚽</div>
+            <div style="font-family:'Space Mono',monospace;font-size:13px;margin-top:8px">football</div>
+          </div>
+          <div style="background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:20px 8px;text-align:center">
+            <div style="font-size:44px">🧱</div>
+            <div style="font-family:'Space Mono',monospace;font-size:13px;margin-top:8px">brick</div>
+          </div>
+          <div style="background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:20px 8px;text-align:center">
+            <div style="font-size:44px">📱</div>
+            <div style="font-family:'Space Mono',monospace;font-size:13px;margin-top:8px">phone</div>
+          </div>
+        </div>
+        <sc-if value="{{ !beat1Revealed }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ revealBeat1 }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#F0A81C;color:#20262A;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;padding:14px 22px;border-radius:4px;cursor:pointer">How do you know?</button>
+        </sc-if>
+        <sc-if value="{{ beat1Revealed }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:fadeUp .3s ease both">
+            <div style="display:flex;flex-direction:column;gap:10px;margin:18px 0">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="background:#0B6E3C;color:#FFFFFF;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;padding:6px 14px;border-radius:4px;white-space:nowrap">These are fine</span>
+                <span style="font-size:16px">🍎 apple · 📏 ruler · 🍱 lunch box</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="background:#BE3A2B;color:#FFFFFF;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;padding:6px 14px;border-radius:4px;white-space:nowrap">This won't fit</span>
+                <span style="font-size:16px">⚽ football</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="background:#BE3A2B;color:#FFFFFF;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;padding:6px 14px;border-radius:4px;white-space:nowrap">This fits, but it's far too heavy</span>
+                <span style="font-size:16px">🧱 brick</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="background:#BE3A2B;color:#FFFFFF;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;padding:6px 14px;border-radius:4px;white-space:nowrap">This fits, but it isn't allowed</span>
+                <span style="font-size:16px">📱 phone</span>
+              </div>
+            </div>
+            <div style="font-size:17px;font-weight:600;margin-top:16px;max-width:540px">You worked that out in about two seconds. How would we teach a computer to do it?</div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBeat2 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;margin-bottom:24px">
+          <div style="flex:0 0 220px;width:220px;height:220px;border-radius:4px;overflow:hidden;border:3px solid #20262A"><img src="assets/animals/matthew.jpg" alt="Matthew" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="flex:1;min-width:240px">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(26px,4.5vw,34px);letter-spacing:-0.02em">Meet Matthew</div>
+            <div style="font-size:17px;margin-top:10px;max-width:440px">Matthew loves animals and wants to go on a road trip with them. He has just bought a brand new car, and he wants to know which animal he can take for a drive.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px">
+          <div style="flex:1;min-width:150px;background:#FFFFFF;border:3px solid #20262A;border-radius:4px;overflow:hidden">
+            <div style="width:100%;aspect-ratio:1;overflow:hidden"><img src="assets/animals/rooster.jpg" alt="Rooster" style="width:100%;height:100%;object-fit:cover"></div>
+            <div style="padding:8px;text-align:center;font-size:14px">Rooster</div>
+            <div style="background:#0B6E3C;color:#FFFFFF;text-align:center;font-family:'Space Mono',monospace;font-size:12px;padding:5px">FITS</div>
+          </div>
+          <div style="flex:1;min-width:150px;background:#FFFFFF;border:3px solid #20262A;border-radius:4px;overflow:hidden">
+            <div style="width:100%;aspect-ratio:1;overflow:hidden"><img src="assets/animals/great-dane.jpg" alt="Great Dane" style="width:100%;height:100%;object-fit:cover"></div>
+            <div style="padding:8px;text-align:center;font-size:14px">Great Dane</div>
+            <div style="background:#0B6E3C;color:#FFFFFF;text-align:center;font-family:'Space Mono',monospace;font-size:12px;padding:5px">FITS</div>
+          </div>
+          <div style="flex:1;min-width:150px;background:#FFFFFF;border:3px solid #20262A;border-radius:4px;overflow:hidden">
+            <div style="width:100%;aspect-ratio:1;overflow:hidden"><img src="assets/animals/elephant.jpg" alt="Elephant" style="width:100%;height:100%;object-fit:cover"></div>
+            <div style="padding:8px;text-align:center;font-size:14px">Elephant</div>
+            <div style="background:#BE3A2B;color:#FFFFFF;text-align:center;font-family:'Space Mono',monospace;font-size:12px;padding:5px">DOES NOT FIT</div>
+          </div>
+        </div>
+        <div style="font-size:17px;margin-bottom:8px">He says the first two fit and the elephant does not. He is right.</div>
+        <div style="font-size:17px;font-weight:600;max-width:560px">But on what basis? And how do we teach that to a computer, so that when a brand new animal turns up, it can decide on its own?</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBeat3 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,5vw,38px);letter-spacing:-0.02em;margin-bottom:8px">What should we measure?</div>
+        <div style="font-size:17px;opacity:0.75;margin-bottom:22px">Pick the question you think matters most.</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <button type="button" onClick="{{ selectB3Weight }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="{{ b3WeightStyle }}">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px">Is it heavier than 150 kg?</div>
+            <div style="font-size:15px;opacity:0.75;font-style:italic;margin-top:4px">Matthew is in the car too: the car has a limit.</div>
+          </button>
+          <button type="button" onClick="{{ selectB3Length }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="{{ b3LengthStyle }}">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px">Is it longer than 1.5 m?</div>
+            <div style="font-size:15px;opacity:0.75;font-style:italic;margin-top:4px">It has to fit across the back seat.</div>
+          </button>
+          <button type="button" onClick="{{ selectB3Height }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="{{ b3HeightStyle }}">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px">Is it taller than the car door?</div>
+            <div style="font-size:15px;opacity:0.75;font-style:italic;margin-top:4px">It has to get in.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBeat4 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,5vw,38px);letter-spacing:-0.02em;margin-bottom:8px">Walk three animals through</div>
+        <div style="font-size:17px;opacity:0.75;margin-bottom:20px">Pick an animal. Answer as if you were the computer.</div>
+        <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+          <button type="button" onClick="{{ selectB4Rooster }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="{{ b4RoosterBtnStyle }}">Rooster{{ b4RoosterCheck }}</button>
+          <button type="button" onClick="{{ selectB4Elephant }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="{{ b4ElephantBtnStyle }}">Elephant{{ b4ElephantCheck }}</button>
+          <button type="button" onClick="{{ selectB4Python }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="{{ b4PythonBtnStyle }}">Python{{ b4PythonCheck }}</button>
+        </div>
+
+        <div style="display:flex;gap:16px;align-items:center;background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:14px;margin-bottom:20px">
+          <div style="width:108px;height:108px;border-radius:4px;overflow:hidden;flex:0 0 108px"><img src="{{ b4Img }}" alt="{{ b4Name }}" style="width:100%;height:100%;object-fit:cover"></div>
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px">{{ b4Name }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:14px;opacity:0.8;margin-top:4px">{{ b4Weight }} kg · {{ b4Length }} m long · {{ b4Height }} m tall</div>
+          </div>
+        </div>
+
+        <div style="background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:16px;margin-bottom:20px">
+          <sc-if value="{{ !b4ShowQ2 }}" hint-placeholder-val="{{ true }}">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px">Is it longer than 1.5 m?</div>
+            <div style="font-family:'Space Mono',monospace;font-size:15px;margin:8px 0 14px">{{ b4Length }} m</div>
+            <sc-if value="{{ !b4Q1Answered }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;gap:10px">
+                <button type="button" onClick="{{ b4AnswerYes }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#FFFFFF;border:2px solid #20262A;border-radius:4px;padding:10px 22px;font-weight:600;font-size:15px;cursor:pointer">Yes</button>
+                <button type="button" onClick="{{ b4AnswerNo }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#FFFFFF;border:2px solid #20262A;border-radius:4px;padding:10px 22px;font-weight:600;font-size:15px;cursor:pointer">No</button>
+              </div>
+              <sc-if value="{{ b4Q1Wrong }}" hint-placeholder-val="{{ false }}">
+                <div style="color:#BE3A2B;font-weight:700;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;margin-top:10px">Check the answers!</div>
+              </sc-if>
+            </sc-if>
+            <sc-if value="{{ b4Q1Answered }}" hint-placeholder-val="{{ false }}">
+              <div style="font-family:'Space Mono',monospace;font-size:15px;color:{{ b4Q1AnswerColor }}">→ {{ b4Q1AnswerLabel }}</div>
+            </sc-if>
+          </sc-if>
+          <sc-if value="{{ b4ShowQ2 }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px">Is it heavier than 150 kg?</div>
+            <div style="font-family:'Space Mono',monospace;font-size:15px;margin:8px 0 14px">{{ b4Weight }} kg</div>
+            <sc-if value="{{ !b4Q2Answered }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;gap:10px">
+                <button type="button" onClick="{{ b4AnswerYes }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#FFFFFF;border:2px solid #20262A;border-radius:4px;padding:10px 22px;font-weight:600;font-size:15px;cursor:pointer">Yes</button>
+                <button type="button" onClick="{{ b4AnswerNo }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#FFFFFF;border:2px solid #20262A;border-radius:4px;padding:10px 22px;font-weight:600;font-size:15px;cursor:pointer">No</button>
+              </div>
+              <sc-if value="{{ b4Q2Wrong }}" hint-placeholder-val="{{ false }}">
+                <div style="color:#BE3A2B;font-weight:700;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;margin-top:10px">Check the answers!</div>
+              </sc-if>
+            </sc-if>
+            <sc-if value="{{ b4Q2Answered }}" hint-placeholder-val="{{ false }}">
+              <div style="font-family:'Space Mono',monospace;font-size:15px;color:{{ b4Q2AnswerColor }}">→ {{ b4Q2AnswerLabel }}</div>
+            </sc-if>
+          </sc-if>
+        </div>
+
+        <div style="position:relative;width:100%;max-width:300px;margin:0 auto;aspect-ratio:300/500">
+          <svg viewBox="0 0 300 500" style="width:100%;height:100%;display:block;overflow:visible">
+            <path d="M150,10 L150,110" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+            <path d="M150,110 L230,110 L230,180" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+            <path d="M150,110 L150,260" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+            <path d="M150,260 L230,260 L230,330" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+            <path d="M150,260 L150,420" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+            <path d="M150,10 L150,110" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b4SegStartStyle }}"></path>
+            <path d="M150,110 L230,110 L230,180" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b4SegJ1YesStyle }}"></path>
+            <path d="M150,110 L150,260" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b4SegJ1NoStyle }}"></path>
+            <path d="M150,260 L230,260 L230,330" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b4SegJ2YesStyle }}"></path>
+            <path d="M150,260 L150,420" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b4SegJ2NoStyle }}"></path>
+            <circle cx="150" cy="10" r="6" fill="#20262A"></circle>
+            <circle cx="150" cy="110" r="8" fill="#20262A"></circle>
+            <circle cx="150" cy="260" r="8" fill="#20262A"></circle>
+          </svg>
+          <div style="position:absolute;left:16%;top:12%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;opacity:0.55;white-space:nowrap">longer than 1.5m?</div>
+          <div style="position:absolute;left:16%;top:47%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;opacity:0.55;white-space:nowrap">heavier than 150kg?</div>
+          <div style="{{ b4Panel1Style }}">DOES NOT FIT</div>
+          <div style="{{ b4Panel2Style }}">DOES NOT FIT</div>
+          <div style="{{ b4PanelFitsStyle }}">FITS</div>
+        </div>
+
+        <sc-if value="{{ b4ShowPythonNote }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;font-size:16px;font-style:italic;margin-top:14px">Light enough. Nowhere near short enough.</div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBeat5 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,5vw,38px);letter-spacing:-0.02em;margin-bottom:8px">An animal Matthew has never seen</div>
+        <div style="font-size:17px;margin-bottom:20px;max-width:560px">A llama wants a lift. It was never in the table. Nobody wrote a rule for it.</div>
+        <div style="display:flex;gap:16px;align-items:center;background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:14px;margin-bottom:20px">
+          <div style="width:108px;height:108px;border-radius:4px;flex:0 0 108px;background:#EAEFE9;display:flex;align-items:center;justify-content:center;font-size:56px">🦙</div>
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px">Llama</div>
+            <div style="font-family:'Space Mono',monospace;font-size:14px;opacity:0.8;margin-top:4px">90 kg · 1.4 m long</div>
+          </div>
+        </div>
+        <sc-if value="{{ !b5Started }}" hint-placeholder-val="{{ true }}">
+          <div style="text-align:center;margin-bottom:20px"><button type="button" onClick="{{ startB5 }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#F0A81C;color:#20262A;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;padding:14px 22px;border-radius:4px;cursor:pointer">Send it through</button></div>
+        </sc-if>
+        <div style="position:relative;width:100%;max-width:300px;margin:0 auto;aspect-ratio:300/500">
+          <svg viewBox="0 0 300 500" style="width:100%;height:100%;display:block;overflow:visible">
+            <path d="M150,10 L150,110" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+            <path d="M150,110 L230,110 L230,180" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+            <path d="M150,110 L150,260" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+            <path d="M150,260 L230,260 L230,330" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+            <path d="M150,260 L150,420" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+            <path d="M150,10 L150,110" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b5SegStartStyle }}"></path>
+            <path d="M150,110 L150,260" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b5SegJ1NoStyle }}"></path>
+            <path d="M150,260 L150,420" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b5SegJ2NoStyle }}"></path>
+            <circle cx="150" cy="10" r="6" fill="#20262A"></circle>
+            <circle cx="150" cy="110" r="8" fill="#20262A"></circle>
+            <circle cx="150" cy="260" r="8" fill="#20262A"></circle>
+          </svg>
+          <div style="position:absolute;left:16%;top:12%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;opacity:0.55;white-space:nowrap">longer than 1.5m?</div>
+          <div style="position:absolute;left:16%;top:47%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;opacity:0.55;white-space:nowrap">heavier than 150kg?</div>
+          <div style="{{ b5Panel1Style }}">DOES NOT FIT</div>
+          <div style="{{ b5Panel2Style }}">DOES NOT FIT</div>
+          <div style="{{ b5PanelFitsStyle }}">FITS</div>
+        </div>
+        <sc-if value="{{ b5Started }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;font-size:17px;font-weight:600;margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto">Nobody told it about llamas. It worked it out from the questions.</div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBeat6 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,5vw,38px);letter-spacing:-0.02em;margin-bottom:8px">The skunk</div>
+        <div style="font-size:17px;margin-bottom:20px;max-width:560px">A skunk wants a lift.</div>
+        <div style="display:flex;gap:16px;align-items:center;background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:14px;margin-bottom:20px">
+          <div style="width:108px;height:108px;border-radius:4px;flex:0 0 108px;background:#EAEFE9;display:flex;align-items:center;justify-content:center;font-size:56px">🦨</div>
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px">Skunk</div>
+            <div style="font-family:'Space Mono',monospace;font-size:14px;opacity:0.8;margin-top:4px">4 kg · 0.6 m long</div>
+          </div>
+        </div>
+        <sc-if value="{{ !b6Started }}" hint-placeholder-val="{{ true }}">
+          <div style="text-align:center;margin-bottom:20px"><button type="button" onClick="{{ startB6 }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#F0A81C;color:#20262A;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;padding:14px 22px;border-radius:4px;cursor:pointer">Send it through</button></div>
+        </sc-if>
+        <div style="position:relative;width:100%;max-width:300px;margin:0 auto;aspect-ratio:300/500">
+          <svg viewBox="0 0 300 500" style="width:100%;height:100%;display:block;overflow:visible">
+            <path d="M150,10 L150,110" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+            <path d="M150,110 L230,110 L230,180" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+            <path d="M150,110 L150,260" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+            <path d="M150,260 L230,260 L230,330" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+            <path d="M150,260 L150,420" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+            <path d="M150,10 L150,110" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b6SegStartStyle }}"></path>
+            <path d="M150,110 L150,260" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b6SegJ1NoStyle }}"></path>
+            <path d="M150,260 L150,420" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none" pathLength="100" stroke-dasharray="100" style="{{ b6SegJ2NoStyle }}"></path>
+            <circle cx="150" cy="10" r="6" fill="#20262A"></circle>
+            <circle cx="150" cy="110" r="8" fill="#20262A"></circle>
+            <circle cx="150" cy="260" r="8" fill="#20262A"></circle>
+          </svg>
+          <div style="position:absolute;left:16%;top:12%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;opacity:0.55;white-space:nowrap">longer than 1.5m?</div>
+          <div style="position:absolute;left:16%;top:47%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;opacity:0.55;white-space:nowrap">heavier than 150kg?</div>
+          <div style="{{ b6Panel1Style }}">DOES NOT FIT</div>
+          <div style="{{ b6Panel2Style }}">DOES NOT FIT</div>
+          <div style="{{ b6PanelFitsStyle }}">FITS</div>
+        </div>
+        <sc-if value="{{ b6Started }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ !b6AsideShown }}" hint-placeholder-val="{{ true }}">
+            <div style="text-align:center;margin-top:18px"><button type="button" onClick="{{ showB6Aside }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#FFFFFF;border:2px solid #20262A;border-radius:4px;padding:10px 20px;font-weight:600;font-size:15px;cursor:pointer">But…</button></div>
+          </sc-if>
+          <sc-if value="{{ b6AsideShown }}" hint-placeholder-val="{{ false }}">
+            <div style="animation:fadeUp .3s ease both;max-width:540px;margin:20px auto 0;border-left:4px solid #F0A81C;padding-left:16px">
+              <div style="font-size:18px;font-style:italic">It fits. It absolutely fits.</div>
+              <div style="font-size:18px;font-style:italic;margin-top:4px">Nobody gave the computer a question about smell.</div>
+              <div style="font-size:17px;font-weight:600;margin-top:14px">The computer only knows what we chose to measure.</div>
+              <div style="font-size:16px;margin-top:6px;opacity:0.85">It never asked whether this was a good idea, because nobody gave it that column.</div>
+            </div>
+            <sc-if value="{{ !b6FixStarted }}" hint-placeholder-val="{{ true }}">
+              <div style="text-align:center;margin-top:20px"><button type="button" onClick="{{ startB6Fix }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#20262A;color:#FFFFFF;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;padding:12px 20px;border-radius:4px;cursor:pointer">Fix it →</button></div>
+            </sc-if>
+            <sc-if value="{{ b6FixStarted }}" hint-placeholder-val="{{ false }}">
+              <div style="animation:fadeUp .3s ease both;max-width:540px;margin:20px auto 0">
+                <div style="font-size:17px">A human, not the computer, adds a column: <b>is it safe to carry?</b> Mark the skunk and the porcupine as no.</div>
+                <sc-if value="{{ !b6Rebuilt }}" hint-placeholder-val="{{ true }}">
+                  <div style="text-align:center;margin-top:16px"><button type="button" onClick="{{ rebuildB6 }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#F0A81C;color:#20262A;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;padding:14px 22px;border-radius:4px;cursor:pointer">Rebuild</button></div>
+                </sc-if>
+                <sc-if value="{{ b6Rebuilt }}" hint-placeholder-val="{{ false }}">
+                  <div style="animation:fadeUp .3s ease both;margin-top:16px">
+                    <div style="text-align:center;font-size:16px;font-weight:600">Same skunk. One more question.</div>
+                    <div style="position:relative;width:100%;max-width:320px;margin:16px auto 0;aspect-ratio:300/600">
+                      <svg viewBox="0 0 300 600" style="width:100%;height:100%;display:block;overflow:visible">
+                        <path d="M150,10 L150,110" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none"></path>
+                        <path d="M150,110 L230,110 L230,180" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                        <path d="M150,110 L150,260" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none"></path>
+                        <path d="M150,260 L230,260 L230,330" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                        <path d="M150,260 L150,410" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none"></path>
+                        <path d="M150,410 L230,410 L230,480" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                        <path d="M150,410 L150,560" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+                        <circle cx="150" cy="10" r="6" fill="#20262A"></circle>
+                        <circle cx="150" cy="110" r="8" fill="#20262A"></circle>
+                        <circle cx="150" cy="260" r="8" fill="#20262A"></circle>
+                        <circle cx="150" cy="410" r="8" fill="#20262A"></circle>
+                      </svg>
+                      <div style="position:absolute;left:16%;top:10%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;opacity:0.55;white-space:nowrap">longer than 1.5m?</div>
+                      <div style="position:absolute;left:16%;top:31%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;opacity:0.55;white-space:nowrap">heavier than 150kg?</div>
+                      <div style="position:absolute;left:16%;top:56%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;opacity:0.55;white-space:nowrap">safe to carry?</div>
+                      <div style="position:absolute;left:76.7%;top:24%;transform:translate(-50%,-50%);width:34%;min-width:84px;padding:8px 6px;border-radius:4px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(10px,3vw,13px);background:#FFFFFF;color:#8a938c;border:2px solid #C6CEC8;box-sizing:border-box">DOES NOT FIT</div>
+                      <div style="position:absolute;left:76.7%;top:49%;transform:translate(-50%,-50%);width:34%;min-width:84px;padding:8px 6px;border-radius:4px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(10px,3vw,13px);background:#FFFFFF;color:#8a938c;border:2px solid #C6CEC8;box-sizing:border-box">DOES NOT FIT</div>
+                      <div style="position:absolute;left:76.7%;top:74%;transform:translate(-50%,-50%);width:34%;min-width:84px;padding:8px 6px;border-radius:4px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(10px,3vw,13px);background:#BE3A2B;color:#FFFFFF;box-sizing:border-box">DOES NOT FIT</div>
+                      <div style="position:absolute;left:50%;top:93%;transform:translate(-50%,-50%);width:34%;min-width:84px;padding:8px 6px;border-radius:4px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(10px,3vw,13px);background:#FFFFFF;color:#8a938c;border:2px solid #C6CEC8;box-sizing:border-box">FITS</div>
+                    </div>
+                    <div style="text-align:center;font-size:17px;font-weight:600;margin-top:18px;max-width:520px;margin-left:auto;margin-right:auto">Nobody rewrote the rules. We gave it one more thing to measure, and it built itself a new tree.</div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </sc-if>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBeat7 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,5vw,38px);letter-spacing:-0.02em;margin-bottom:8px">The better question</div>
+
+        <sc-if value="{{ b7StageSplit }}" hint-placeholder-val="{{ true }}">
+          <sc-if value="{{ !b7Question }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:17px;opacity:0.75;margin-bottom:16px;text-align:center">Pick a question below and watch the pile split into two columns.</div>
+          </sc-if>
+          <sc-if value="{{ b7Question }}" hint-placeholder-val="{{ false }}">
+            <div style="text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;margin-bottom:10px">{{ b7QuestionText }}</div>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-bottom:14px;max-width:520px;margin-left:auto;margin-right:auto">
+              <div style="{{ b7YesHeaderStyle }}">YES · {{ b7YesCount }} · {{ b7YesWrong }} wrong</div>
+              <div style="{{ b7TotalStyle }}">{{ b7TotalText }}</div>
+              <div style="{{ b7NoHeaderStyle }}">NO · {{ b7NoCount }} · {{ b7NoWrong }} wrong</div>
+            </div>
+          </sc-if>
+
+          <div style="position:relative;width:100%;max-width:640px;margin:0 auto;{{ b7FieldHeightStyle }}">
+            <sc-if value="{{ b7Question }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:#C6CEC8"></div>
+            </sc-if>
+            <sc-for list="{{ b7Items }}" as="a" hint-placeholder-count="16">
+              <div style="{{ a.wrapStyle }}">
+                <div style="{{ a.boxStyle }}" title="{{ a.name }}">
+                  <sc-if value="{{ a.hasImg }}" hint-placeholder-val="{{ false }}"><div style="width:100%;aspect-ratio:1;overflow:hidden"><img src="{{ a.img }}" alt="{{ a.name }}" style="width:100%;height:100%;object-fit:cover;display:block"></div></sc-if>
+                  <sc-if value="{{ a.hasEmoji }}" hint-placeholder-val="{{ false }}"><div style="width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:clamp(20px,5vw,30px);background:#FFFFFF">{{ a.emoji }}</div></sc-if>
+                  <div style="font-family:'Space Mono',monospace;font-size:10px;text-align:center;padding:3px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.name }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px 0 6px">
+            <button type="button" onClick="{{ selectB7Length }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="{{ b7LengthPillStyle }}">Is it longer than 1.5 m?</button>
+            <button type="button" onClick="{{ selectB7Weight }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="{{ b7WeightPillStyle }}">Is it heavier than 150 kg?</button>
+            <button type="button" onClick="{{ selectB7Height }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="{{ b7HeightPillStyle }}">Is it safe to carry?</button>
+          </div>
+
+          <div style="margin-top:22px">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;margin-bottom:10px">Try all three, then let the computer decide</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:150px;font-size:13px;flex:0 0 150px">longer than 1.5m?</div>
+                <div style="flex:1;height:22px;background:#EAEFE9;border-radius:3px;overflow:hidden"><div style="{{ b7BarLengthStyle }}"></div></div>
+                <div style="font-family:'Space Mono',monospace;font-size:13px;width:20px">{{ b7BarLengthLabel }}</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:150px;font-size:13px;flex:0 0 150px">heavier than 150kg?</div>
+                <div style="flex:1;height:22px;background:#EAEFE9;border-radius:3px;overflow:hidden"><div style="{{ b7BarWeightStyle }}"></div></div>
+                <div style="font-family:'Space Mono',monospace;font-size:13px;width:20px">{{ b7BarWeightLabel }}</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:150px;font-size:13px;flex:0 0 150px">safe to carry?</div>
+                <div style="flex:1;height:22px;background:#EAEFE9;border-radius:3px;overflow:hidden"><div style="{{ b7BarHeightStyle }}"></div></div>
+                <div style="font-family:'Space Mono',monospace;font-size:13px;width:20px">{{ b7BarHeightLabel }}</div>
+              </div>
+            </div>
+            <sc-if value="{{ !b7Computed }}" hint-placeholder-val="{{ true }}">
+              <button type="button" onClick="{{ computeB7 }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#F0A81C;color:#20262A;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;padding:14px 22px;border-radius:4px;cursor:pointer">Let the computer choose</button>
+            </sc-if>
+            <sc-if value="{{ b7Computed }}" hint-placeholder-val="{{ false }}">
+              <div style="animation:fadeUp .3s ease both">
+                <div style="font-size:16px;font-weight:600;margin-bottom:14px">Fewest mistakes wins: <span style="color:#F0A81C">is it longer than 1.5 m?</span></div>
+                <button type="button" onClick="{{ goRecurse }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#20262A;color:#FFFFFF;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;padding:12px 20px;border-radius:4px;cursor:pointer">Continue</button>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ b7StageRecurse }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-bottom:20px">
+            <div style="font-family:'Space Mono',monospace;font-size:13px;opacity:0.6;margin-bottom:8px">longer than 1.5m: does not fit, already sorted</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;opacity:0.55">
+              <div style="width:56px;height:56px;border:3px solid #BE3A2B;border-radius:4px;overflow:hidden"><img src="assets/animals/python.jpg" alt="Python" style="width:100%;height:100%;object-fit:cover"></div>
+              <div style="width:56px;height:56px;border:3px solid #BE3A2B;border-radius:4px;overflow:hidden"><img src="assets/animals/monitor-lizard.jpg" alt="Monitor Lizard" style="width:100%;height:100%;object-fit:cover"></div>
+              <div style="width:56px;height:56px;border:3px solid #BE3A2B;border-radius:4px;overflow:hidden"><img src="assets/animals/kangaroo.jpg" alt="Kangaroo" style="width:100%;height:100%;object-fit:cover"></div>
+              <div style="width:56px;height:56px;border:3px solid #BE3A2B;border-radius:4px;overflow:hidden"><img src="assets/animals/alligator.jpg" alt="Alligator" style="width:100%;height:100%;object-fit:cover"></div>
+              <div style="width:56px;height:56px;border:3px solid #BE3A2B;border-radius:4px;overflow:hidden"><img src="assets/animals/elephant.jpg" alt="Elephant" style="width:100%;height:100%;object-fit:cover"></div>
+              <div style="width:56px;height:56px;border:3px solid #BE3A2B;border-radius:4px;overflow:hidden"><img src="assets/animals/horse.jpg" alt="Horse" style="width:100%;height:100%;object-fit:cover"></div>
+            </div>
+          </div>
+          <div style="font-size:17px;margin-bottom:18px;max-width:560px">The other 12 are still muddled. Split them again, by weight.</div>
+          <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px">
+            <div style="flex:1;min-width:220px">
+              <div style="font-family:'Space Mono',monospace;font-size:13px;opacity:0.7;margin-bottom:8px">heavier than 150 kg: does not fit</div>
+              <div style="display:flex;gap:8px">
+                <div style="width:72px;height:72px;border:3px solid #BE3A2B;border-radius:4px;overflow:hidden"><img src="assets/animals/black-bear.jpg" alt="Black Bear" style="width:100%;height:100%;object-fit:cover"></div>
+                <div style="width:72px;height:72px;border:3px solid #BE3A2B;border-radius:4px;overflow:hidden"><img src="assets/animals/pig.jpg" alt="Pig" style="width:100%;height:100%;object-fit:cover"></div>
+                <div style="width:72px;height:72px;border:3px solid #BE3A2B;border-radius:4px;overflow:hidden"><img src="assets/animals/gorilla.jpg" alt="Gorilla" style="width:100%;height:100%;object-fit:cover"></div>
+              </div>
+            </div>
+            <div style="flex:1;min-width:220px">
+              <div style="font-family:'Space Mono',monospace;font-size:13px;opacity:0.7;margin-bottom:8px">150 kg or under: assumed fits</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <div style="width:64px;height:64px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/rooster.jpg" alt="Rooster" style="width:100%;height:100%;object-fit:cover"></div>
+                <div style="width:64px;height:64px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/cat.jpg" alt="Cat" style="width:100%;height:100%;object-fit:cover"></div>
+                <div style="width:64px;height:64px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/rabbit.jpg" alt="Rabbit" style="width:100%;height:100%;object-fit:cover"></div>
+                <div style="width:64px;height:64px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/great-dane.jpg" alt="Great Dane" style="width:100%;height:100%;object-fit:cover"></div>
+                <div style="width:64px;height:64px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/penguin.jpg" alt="Penguin" style="width:100%;height:100%;object-fit:cover"></div>
+                <div style="width:64px;height:64px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/goat.jpg" alt="Goat" style="width:100%;height:100%;object-fit:cover"></div>
+                <div style="width:64px;height:64px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/border-collie.jpg" alt="Border Collie" style="width:100%;height:100%;object-fit:cover"></div>
+                <div style="width:64px;height:64px;border:3px solid #0B6E3C;border-radius:4px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 0 0 3px #20262A">🦨</div>
+                <div style="width:64px;height:64px;border:3px solid #0B6E3C;border-radius:4px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 0 0 3px #20262A">🦔</div>
+              </div>
+            </div>
+          </div>
+          <sc-if value="{{ !b7RecurseSafety }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:16px;font-weight:600;margin-bottom:16px">2 mistakes left: the skunk and porcupine aren't actually safe. Split once more, by safety.</div>
+            <button type="button" onClick="{{ goRecurseSafety }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#F0A81C;color:#20262A;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;padding:12px 20px;border-radius:4px;cursor:pointer">Split by safety</button>
+          </sc-if>
+          <sc-if value="{{ b7RecurseSafety }}" hint-placeholder-val="{{ false }}">
+            <div style="animation:fadeUp .3s ease both">
+              <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px">
+                <div style="flex:1;min-width:180px">
+                  <div style="font-family:'Space Mono',monospace;font-size:13px;opacity:0.7;margin-bottom:8px">not safe: does not fit</div>
+                  <div style="display:flex;gap:8px">
+                    <div style="width:64px;height:64px;border:3px solid #BE3A2B;border-radius:4px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:32px">🦨</div>
+                    <div style="width:64px;height:64px;border:3px solid #BE3A2B;border-radius:4px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:32px">🦔</div>
+                  </div>
+                </div>
+                <div style="flex:1;min-width:180px">
+                  <div style="font-family:'Space Mono',monospace;font-size:13px;opacity:0.7;margin-bottom:8px">safe: fits</div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap">
+                    <div style="width:56px;height:56px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/rooster.jpg" alt="Rooster" style="width:100%;height:100%;object-fit:cover"></div>
+                    <div style="width:56px;height:56px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/cat.jpg" alt="Cat" style="width:100%;height:100%;object-fit:cover"></div>
+                    <div style="width:56px;height:56px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/rabbit.jpg" alt="Rabbit" style="width:100%;height:100%;object-fit:cover"></div>
+                    <div style="width:56px;height:56px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/great-dane.jpg" alt="Great Dane" style="width:100%;height:100%;object-fit:cover"></div>
+                    <div style="width:56px;height:56px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/penguin.jpg" alt="Penguin" style="width:100%;height:100%;object-fit:cover"></div>
+                    <div style="width:56px;height:56px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/goat.jpg" alt="Goat" style="width:100%;height:100%;object-fit:cover"></div>
+                    <div style="width:56px;height:56px;border:3px solid #0B6E3C;border-radius:4px;overflow:hidden"><img src="assets/animals/border-collie.jpg" alt="Border Collie" style="width:100%;height:100%;object-fit:cover"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="font-size:16px;font-weight:600;margin-bottom:16px">0 mistakes left. Pure.</div>
+              <button type="button" onClick="{{ goTree }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#20262A;color:#FFFFFF;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;padding:12px 20px;border-radius:4px;cursor:pointer">Show the finished tree</button>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <sc-if value="{{ b7StageTree }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:17px;margin-bottom:18px">Three questions. Chosen by counting.</div>
+          <div style="max-width:360px;margin:0 auto;background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:22px">
+            <div style="font-family:'Space Mono',monospace;font-size:15px;line-height:2.2">
+              <div>1. longer than 1.5m? <span style="opacity:0.55">yes →</span> <b style="color:#BE3A2B">DOES NOT FIT</b></div>
+              <div>2. heavier than 150kg? <span style="opacity:0.55">yes →</span> <b style="color:#BE3A2B">DOES NOT FIT</b></div>
+              <div>3. safe to carry? <span style="opacity:0.55">no →</span> <b style="color:#BE3A2B">DOES NOT FIT</b></div>
+            </div>
+            <div style="margin-top:14px;padding-top:14px;border-top:2px solid #C6CEC8;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;text-align:center;color:#0B6E3C">otherwise → FITS</div>
+          </div>
+          <div style="text-align:center;margin-top:20px"><button type="button" onClick="{{ goClosing }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#20262A;color:#FFFFFF;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;padding:12px 20px;border-radius:4px;cursor:pointer">Continue</button></div>
+        </sc-if>
+
+        <sc-if value="{{ b7StageClosing }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:18px">
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;margin-bottom:8px">The rejected question</div>
+              <div style="font-size:16px;font-style:italic">It never once asked whether the animal was taller than the car door, even though that was on offer too.</div>
+              <sc-if value="{{ b7CallbackHeight }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size:15px;margin-top:8px;opacity:0.8">You picked that one back on Page 3. It sounded useful. Counting said otherwise.</div>
+              </sc-if>
+              <div style="font-size:15px;margin-top:8px;opacity:0.8">Won't fit, too heavy, not allowed: the same three things you checked in your school bag, back on Page 1.</div>
+            </div>
+            <div style="background:#FFFFFF;border:3px solid #20262A;border-radius:4px;padding:18px">
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;margin-bottom:8px">This has a name</div>
+              <div style="font-size:16px"><b>ID3</b> and <b>C4.5</b> score questions using information gain; <b>CART</b>, the one inside most software today, uses Gini impurity. We counted mistakes, which is simpler and gives the same tree here.</div>
+            </div>
+            <div><button type="button" onClick="{{ restartLesson }}" style-focus="outline:3px solid #20262A;outline-offset:2px" style="background:#FFFFFF;border:2px solid #20262A;border-radius:4px;padding:10px 20px;font-weight:600;font-size:15px;cursor:pointer">Restart the lesson</button></div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+  </main>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-top:3px solid #20262A;background:#FFFFFF">
+    <button type="button" onClick="{{ goBack }}" disabled="{{ backDisabled }}" style-focus="outline:3px solid #F0A81C;outline-offset:2px" style="{{ backBtnStyle }}">← Back</button>
+    <div style="font-family:'Space Mono',monospace;font-size:13px;opacity:0.6">Page {{ beat }} of 7</div>
+    <sc-if value="{{ showNext }}" hint-placeholder-val="{{ true }}">
+      <div style="text-align:right">
+        <button type="button" onClick="{{ goNext }}" disabled="{{ nextDisabled }}" style-focus="outline:3px solid #F0A81C;outline-offset:2px" style="{{ nextBtnStyle }}">Next →</button>
+        <sc-if value="{{ nextHint }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;opacity:0.6;margin-top:4px">{{ nextHint }}</div></sc-if>
+      </div>
+    </sc-if>
+  </div>
+
+  <details style="max-width:860px;margin:24px auto 60px;padding:0 20px;width:100%">
+    <summary style="cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;color:#20262A;opacity:0.7">Teacher notes</summary>
+    <div style="margin-top:14px;font-size:15px;line-height:1.6;display:flex;flex-direction:column;gap:12px">
+      <div><b>Objective.</b> Pupils can explain that a computer classifies things by asking a short chain of yes-or-no questions, and that the questions are chosen by counting rather than by knowing anything about the subject.</div>
+      <div><b>Why this framing.</b> "Fits in a car" is a threshold question, really "is it smaller than roughly this big". Numeric thresholds are what real decision trees split on, so this is not an analogy for the algorithm. It is the algorithm, with the arithmetic made countable.</div>
+      <div><b>Being straight about the maths.</b> Splits are scored by misclassification impurity: how many are left in the wrong pile. This is a genuine criterion, but production implementations use Gini or entropy, which respond more smoothly to changes that do not flip the majority class. The principle taught is unchanged.</div>
+      <div><b>The engineered surprise.</b> Six animals exist solely so that no single question solves the problem, and the third question is rejected outright.</div>
+      <div><b>Checking understanding.</b> Ask why "Is it an elephant?" would be a poor first question. A child who says it sorts out one animal and leaves everything else muddled has understood information gain without meeting the term.</div>
+      <div><b>Support.</b> Run page 7 with paper cards and two hoops on a table. Count the odd ones out by hand before touching a screen.</div>
+      <div><b>Stretch.</b> Add an animal that breaks the tree (heavy, short, and it somehow does fit) and ask what fourth question would be needed. This is how real models get extended when they meet data they were not built for.</div>
+      <div><b>The question a sharp adult will ask.</b> If this works so well, why isn't image recognition done with decision trees? Because a child can name "pointy ears" but cannot say which pixels make them pointy. Decision trees need features handed to them already measured. For images, the features have to be learned — which is what neural networks are for.</div>
+    </div>
+  </details>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  animals = [
+    {id:'rooster',name:'Rooster',weight:3,length:'0.5',height:'0.7',safe:true,fits:true,img:'assets/animals/rooster.jpg'},
+    {id:'cat',name:'Cat',weight:4,length:'0.5',height:'0.3',safe:true,fits:true,img:'assets/animals/cat.jpg'},
+    {id:'rabbit',name:'Rabbit',weight:2,length:'0.4',height:'0.25',safe:true,fits:true,img:'assets/animals/rabbit.jpg'},
+    {id:'greatdane',name:'Great Dane',weight:70,length:'1.3',height:'0.85',safe:true,fits:true,img:'assets/animals/great-dane.jpg'},
+    {id:'penguin',name:'Penguin',weight:25,length:'1.1',height:'1.1',safe:true,fits:true,img:'assets/animals/penguin.jpg'},
+    {id:'goat',name:'Goat',weight:60,length:'1.3',height:'0.9',safe:true,fits:true,img:'assets/animals/goat.jpg'},
+    {id:'collie',name:'Border Collie',weight:20,length:'1.0',height:'0.55',safe:true,fits:true,img:'assets/animals/border-collie.jpg'},
+    {id:'python',name:'Python',weight:30,length:'4.0',height:'0.2',safe:true,fits:false,img:'assets/animals/python.jpg'},
+    {id:'monitor',name:'Monitor Lizard',weight:20,length:'2.0',height:'0.3',safe:true,fits:false,img:'assets/animals/monitor-lizard.jpg'},
+    {id:'kangaroo',name:'Kangaroo',weight:85,length:'1.6',height:'1.6',safe:true,fits:false,img:'assets/animals/kangaroo.jpg'},
+    {id:'alligator',name:'Alligator',weight:100,length:'3.0',height:'0.4',safe:false,fits:false,img:'assets/animals/alligator.jpg'},
+    {id:'pig',name:'Pig',weight:250,length:'1.4',height:'0.9',safe:true,fits:false,img:'assets/animals/pig.jpg'},
+    {id:'blackbear',name:'Black Bear',weight:200,length:'1.4',height:'0.9',safe:true,fits:false,img:'assets/animals/black-bear.jpg'},
+    {id:'gorilla',name:'Gorilla',weight:180,length:'1.4',height:'1.5',safe:true,fits:false,img:'assets/animals/gorilla.jpg'},
+    {id:'elephant',name:'Elephant',weight:4000,length:'6.0',height:'3.0',safe:true,fits:false,img:'assets/animals/elephant.jpg'},
+    {id:'horse',name:'Horse',weight:500,length:'2.4',height:'1.6',safe:true,fits:false,img:'assets/animals/horse.jpg'},
+    {id:'skunk',name:'Skunk',weight:4,length:'0.6',height:'0.3',safe:false,fits:false,emoji:'🦨'},
+    {id:'porcupine',name:'Porcupine',weight:12,length:'0.8',height:'0.3',safe:false,fits:false,emoji:'🦔'},
+  ];
+  wrongByQuestion = {
+    length: ['pig','blackbear','gorilla','skunk','porcupine'],
+    weight: ['python','monitor','kangaroo','alligator','skunk','porcupine'],
+    height: ['python','monitor','kangaroo','pig','blackbear','gorilla','elephant','horse'],
+  };
+
+  b7Violates = {
+    length: (a) => parseFloat(a.length) > 1.5,
+    weight: (a) => a.weight > 150,
+    height: (a) => a.safe,
+  };
+  b7QuestionTextMap = {
+    length: 'Is it longer than 1.5 m?',
+    weight: 'Is it heavier than 150 kg?',
+    height: 'Is it safe to carry?',
+  };
+
+  computeB7Layout(question) {
+    const reduced = this.state.reducedMotion;
+    const ROW_H = 108;
+    const assign = {};
+    let maxRow = 0;
+    if (!question) {
+      const cols = 5;
+      this.animals.forEach((a, i) => {
+        const col = i % cols, row = Math.floor(i / cols);
+        assign[a.id] = { areaLeft: 0, areaWidth: 100, cols, col, row };
+        maxRow = Math.max(maxRow, row);
+      });
+    } else {
+      const violates = this.b7Violates[question];
+      const yes = this.animals.filter(violates);
+      const no = this.animals.filter((a) => !violates(a));
+      const cols = 3;
+      yes.forEach((a, i) => {
+        const col = i % cols, row = Math.floor(i / cols);
+        assign[a.id] = { areaLeft: 0, areaWidth: 47, cols, col, row };
+        maxRow = Math.max(maxRow, row);
+      });
+      no.forEach((a, i) => {
+        const col = i % cols, row = Math.floor(i / cols);
+        assign[a.id] = { areaLeft: 53, areaWidth: 47, cols, col, row };
+        maxRow = Math.max(maxRow, row);
+      });
+    }
+    const wrongSet = question ? new Set(this.wrongByQuestion[question]) : null;
+    const items = this.animals.map((a, idx) => {
+      const p = assign[a.id];
+      const slotPct = p.areaWidth / p.cols;
+      const leftPct = p.areaLeft + (p.col + 0.5) * slotPct;
+      const topPx = p.row * ROW_H + ROW_H / 2;
+      const widthPct = slotPct * 0.68;
+      const delay = idx * 20;
+      const wrong = wrongSet ? wrongSet.has(a.id) : false;
+      return {
+        id: a.id, name: a.name, img: a.img || '', hasImg: !!a.img, emoji: a.emoji || '', hasEmoji: !!a.emoji,
+        wrapStyle: {
+          position: 'absolute', left: leftPct + '%', top: topPx + 'px', transform: 'translate(-50%,-50%)', width: widthPct + '%',
+        },
+        boxStyle: {
+          border: `4px solid ${a.fits ? '#0B6E3C' : '#BE3A2B'}`, borderRadius: '6px', overflow: 'hidden',
+          background: a.fits ? 'rgba(11,110,60,0.08)' : 'rgba(190,58,43,0.08)',
+          boxShadow: wrong ? '0 0 0 3px #20262A' : '0 0 0 0 rgba(0,0,0,0)',
+        },
+      };
+    });
+    return { items, fieldHeight: (maxRow + 1) * ROW_H + 24 };
+  }
+
+  selectB7Question = (q) => {
+    const total = this.wrongByQuestion[q].length;
+    this.setState({ b7Question: q, b7TotalDisplay: total });
+  };
+
+  state = {
+    beat: 1,
+    reducedMotion: false,
+    beat1Revealed: false,
+    beat3Choice: null,
+    b4AnimalId: 'rooster',
+    b4ByAnimal: {
+      rooster: {doneQ1:false,q1Result:null,doneQ2:false,q2Result:null,branch:null},
+      elephant: {doneQ1:false,q1Result:null,doneQ2:false,q2Result:null,branch:null},
+      python: {doneQ1:false,q1Result:null,doneQ2:false,q2Result:null,branch:null},
+    },
+    b5Started: false,
+    b6Started: false,
+    b6AsideShown: false,
+    b6FixStarted: false,
+    b6Rebuilt: false,
+    b7Question: null,
+    b7TotalDisplay: null,
+    b7Computed: false,
+    b7Stage: 'split',
+    b7RecurseSafety: false,
+  };
+
+  componentDidMount() {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    this.setState({reducedMotion: mq.matches});
+    this._mqHandler = (e) => this.setState({reducedMotion: e.matches});
+    mq.addEventListener('change', this._mqHandler);
+    this._mq = mq;
+  }
+  componentWillUnmount() {
+    if (this._mq) this._mq.removeEventListener('change', this._mqHandler);
+  }
+
+  segStyle(active, delayMs) {
+    const d = delayMs || 0;
+    const reduced = this.state.reducedMotion;
+    return {
+      strokeDashoffset: active ? 0 : 100,
+      transition: reduced ? 'none' : `stroke-dashoffset .5s cubic-bezier(0.2,0.7,0.3,1) ${d}ms`,
+    };
+  }
+  panelStyle(active, color, left, top, delayMs) {
+    const d = delayMs || 0;
+    const reduced = this.state.reducedMotion;
+    return {
+      position: 'absolute', left: left + '%', top: top + '%', transform: 'translate(-50%,-50%)',
+      width: '34%', minWidth: '84px', padding: '8px 6px', borderRadius: '4px', textAlign: 'center',
+      fontFamily: "'Bricolage Grotesque',sans-serif", fontWeight: 700, fontSize: 'clamp(10px,3vw,13px)',
+      letterSpacing: '-0.01em', lineHeight: 1.15, boxSizing: 'border-box',
+      background: active ? color : '#FFFFFF',
+      color: active ? '#FFFFFF' : '#8a938c',
+      border: `2px solid ${active ? color : '#C6CEC8'}`,
+      animation: active ? (reduced ? 'none' : `stamp .18s cubic-bezier(0.2,0.7,0.3,1) ${d}ms both`) : 'none',
+    };
+  }
+
+  answerB4 = (clicked) => {
+    const id = this.state.b4AnimalId;
+    const animal = this.animals.find(a => a.id === id);
+    const cur = this.state.b4ByAnimal[id];
+    const next = {...cur};
+    if (!cur.doneQ1) {
+      const correct = parseFloat(animal.length) > 1.5 ? 'yes' : 'no';
+      if (clicked !== correct) { next.wrongQ1 = true; this.setState((s) => ({b4ByAnimal: {...s.b4ByAnimal, [id]: next}})); return; }
+      next.wrongQ1 = false;
+      next.doneQ1 = true; next.q1Result = correct; next.clickedQ1 = clicked;
+      if (correct === 'yes') next.branch = 'top';
+    } else if (!cur.doneQ2) {
+      const correct = animal.weight > 150 ? 'yes' : 'no';
+      if (clicked !== correct) { next.wrongQ2 = true; this.setState((s) => ({b4ByAnimal: {...s.b4ByAnimal, [id]: next}})); return; }
+      next.wrongQ2 = false;
+      next.doneQ2 = true; next.q2Result = correct; next.clickedQ2 = clicked;
+      next.branch = correct === 'yes' ? 'mid' : 'fits';
+    }
+    this.setState((s) => ({b4ByAnimal: {...s.b4ByAnimal, [id]: next}}));
+  };
+
+  renderVals() {
+    const s = this.state;
+    const dotDefs = [1,2,3,4,5,6,7].map((n) => {
+      const st = n === s.beat ? 'current' : n < s.beat ? 'done' : 'upcoming';
+      const bg = st === 'current' ? '#F0A81C' : st === 'done' ? '#20262A' : '#FFFFFF';
+      const border = st === 'upcoming' ? '#C6CEC8' : (st === 'current' ? '#F0A81C' : '#20262A');
+      return {
+        n, label: 'Page ' + n,
+        onClick: st === 'upcoming' ? () => {} : () => this.setState({beat: n}),
+        style: {width:'14px',height:'14px',borderRadius:'50%',border:`2px solid ${border}`,background:bg,cursor: st==='upcoming'?'default':'pointer',padding:0},
+      };
+    });
+
+    const b4Cur = s.b4ByAnimal[s.b4AnimalId];
+    const b4Animal = this.animals.find(a => a.id === s.b4AnimalId);
+    const b4ShowQ2 = b4Cur.doneQ1 && b4Cur.q1Result === 'no';
+    const segStartActive = b4Cur.doneQ1;
+    const segJ1YesActive = b4Cur.branch === 'top';
+    const segJ1NoActive = b4Cur.doneQ1 && b4Cur.q1Result === 'no';
+    const segJ2YesActive = b4Cur.branch === 'mid';
+    const segJ2NoActive = b4Cur.branch === 'fits';
+
+    const b7q = s.b7Question;
+    const b7Layout = this.computeB7Layout(b7q);
+    const b7WrongSet = b7q ? new Set(this.wrongByQuestion[b7q]) : null;
+    const b7Violate = b7q ? this.b7Violates[b7q] : null;
+    const b7YesList = b7q ? this.animals.filter(b7Violate) : [];
+    const b7NoList = b7q ? this.animals.filter(a => !b7Violate(a)) : [];
+    const b7YesWrong = b7WrongSet ? b7YesList.filter(a => b7WrongSet.has(a.id)).length : 0;
+    const b7NoWrong = b7WrongSet ? b7NoList.filter(a => b7WrongSet.has(a.id)).length : 0;
+    const b7HeaderStyle = (wrong) => ({
+      textAlign: 'center', fontFamily: "'Space Mono',monospace", fontSize: '13px', padding: '8px 6px', borderRadius: '4px',
+      background: wrong === 0 ? '#0B6E3C' : '#FFFFFF', color: wrong === 0 ? '#FFFFFF' : '#20262A',
+      border: `2px solid ${wrong === 0 ? '#0B6E3C' : '#C6CEC8'}`,
+    });
+
+    const barBase = (mistakes, computed, delayMs, fill) => ({
+      height: '100%', borderRadius: '3px', background: fill,
+      width: (computed ? mistakes * 26 : 0) + 'px',
+      transition: s.reducedMotion ? 'none' : `width .6s cubic-bezier(0.2,0.7,0.3,1) ${delayMs}ms`,
+    });
+
+    const backDisabled = s.beat === 1;
+    const showNext = s.beat < 7;
+    let nextDisabled = false, nextHint = '';
+    if (s.beat === 1) { nextDisabled = !s.beat1Revealed; nextHint = nextDisabled ? 'Reveal how you knew first.' : ''; }
+    else if (s.beat === 3) { nextDisabled = !s.beat3Choice; nextHint = nextDisabled ? 'Pick a question first.' : ''; }
+    else if (s.beat === 4) {
+      const done = ['rooster','elephant','python'].every(id => !!s.b4ByAnimal[id].branch);
+      nextDisabled = !done; nextHint = nextDisabled ? 'Try all three animals first.' : '';
+    } else if (s.beat === 5) { nextDisabled = !s.b5Started; nextHint = nextDisabled ? 'Send the llama through first.' : ''; }
+    else if (s.beat === 6) { nextDisabled = !s.b6Rebuilt; nextHint = nextDisabled ? 'Finish this beat first.' : ''; }
+
+    const btnBase = {borderRadius:'4px', fontFamily:"'Bricolage Grotesque',sans-serif", fontWeight:700, fontSize:'16px', padding:'12px 22px', cursor:'pointer', border:'none'};
+
+    return {
+      beat: s.beat, dots: dotDefs,
+      isBeat1: s.beat===1, isBeat2: s.beat===2, isBeat3: s.beat===3, isBeat4: s.beat===4, isBeat5: s.beat===5, isBeat6: s.beat===6, isBeat7: s.beat===7,
+      goBack: () => this.setState(st => ({beat: Math.max(1, st.beat-1)})),
+      goNext: () => { if(!nextDisabled) this.setState(st => ({beat: Math.min(7, st.beat+1)})); },
+      backDisabled, showNext, nextDisabled, nextHint,
+      backBtnStyle: {...btnBase, background: backDisabled?'#EAEFE9':'#FFFFFF', color:'#20262A', border:'2px solid #20262A', opacity: backDisabled?0.4:1, cursor: backDisabled?'default':'pointer'},
+      nextBtnStyle: {...btnBase, background: nextDisabled?'#EAEFE9':'#20262A', color: nextDisabled?'#8a938c':'#FFFFFF', opacity: nextDisabled?0.6:1, cursor: nextDisabled?'default':'pointer'},
+
+      beat1Revealed: s.beat1Revealed, revealBeat1: () => this.setState({beat1Revealed:true}),
+
+      b3WeightStyle: {textAlign:'left', background:'#FFFFFF', border: `3px solid ${s.beat3Choice==='weight'?'#F0A81C':'#20262A'}`, borderRadius:'4px', padding:'16px', cursor:'pointer'},
+      b3LengthStyle: {textAlign:'left', background:'#FFFFFF', border: `3px solid ${s.beat3Choice==='length'?'#F0A81C':'#20262A'}`, borderRadius:'4px', padding:'16px', cursor:'pointer'},
+      b3HeightStyle: {textAlign:'left', background:'#FFFFFF', border: `3px solid ${s.beat3Choice==='height'?'#F0A81C':'#20262A'}`, borderRadius:'4px', padding:'16px', cursor:'pointer'},
+      selectB3Weight: () => this.setState({beat3Choice:'weight'}),
+      selectB3Length: () => this.setState({beat3Choice:'length'}),
+      selectB3Height: () => this.setState({beat3Choice:'height'}),
+
+      b4RoosterBtnStyle: {background: s.b4AnimalId==='rooster'?'#F0A81C':'#FFFFFF', border:'2px solid #20262A', borderRadius:'4px', padding:'9px 16px', fontWeight:600, cursor:'pointer'},
+      b4ElephantBtnStyle: {background: s.b4AnimalId==='elephant'?'#F0A81C':'#FFFFFF', border:'2px solid #20262A', borderRadius:'4px', padding:'9px 16px', fontWeight:600, cursor:'pointer'},
+      b4PythonBtnStyle: {background: s.b4AnimalId==='python'?'#F0A81C':'#FFFFFF', border:'2px solid #20262A', borderRadius:'4px', padding:'9px 16px', fontWeight:600, cursor:'pointer'},
+      b4RoosterCheck: s.b4ByAnimal.rooster.branch ? ' ✓' : '',
+      b4ElephantCheck: s.b4ByAnimal.elephant.branch ? ' ✓' : '',
+      b4PythonCheck: s.b4ByAnimal.python.branch ? ' ✓' : '',
+      selectB4Rooster: () => this.setState({b4AnimalId:'rooster'}),
+      selectB4Elephant: () => this.setState({b4AnimalId:'elephant'}),
+      selectB4Python: () => this.setState({b4AnimalId:'python'}),
+
+      b4Name: b4Animal.name, b4Img: b4Animal.img, b4Weight: b4Animal.weight, b4Length: b4Animal.length, b4Height: b4Animal.height,
+      b4ShowQ2, b4Q1Answered: b4Cur.doneQ1, b4Q2Answered: b4Cur.doneQ2,
+      b4Q1AnswerLabel: b4Cur.q1Result === 'yes' ? 'Yes' : 'No',
+      b4Q1AnswerColor: b4Cur.q1Result === 'yes' ? '#BE3A2B' : '#0B6E3C',
+      b4Q2AnswerLabel: b4Cur.q2Result === 'yes' ? 'Yes' : 'No',
+      b4Q2AnswerColor: b4Cur.q2Result === 'yes' ? '#BE3A2B' : '#0B6E3C',
+      b4Q1Wrong: !!b4Cur.wrongQ1, b4Q2Wrong: !!b4Cur.wrongQ2,
+      b4AnswerYes: () => this.answerB4('yes'), b4AnswerNo: () => this.answerB4('no'),
+      b4ShowPythonNote: s.b4AnimalId === 'python' && b4Cur.branch === 'top',
+
+      b4SegStartStyle: this.segStyle(segStartActive),
+      b4SegJ1YesStyle: this.segStyle(segJ1YesActive),
+      b4SegJ1NoStyle: this.segStyle(segJ1NoActive),
+      b4SegJ2YesStyle: this.segStyle(segJ2YesActive),
+      b4SegJ2NoStyle: this.segStyle(segJ2NoActive),
+      b4Panel1Style: this.panelStyle(b4Cur.branch==='top', '#BE3A2B', 76.7, 41),
+      b4Panel2Style: this.panelStyle(b4Cur.branch==='mid', '#BE3A2B', 76.7, 71),
+      b4PanelFitsStyle: this.panelStyle(b4Cur.branch==='fits', '#0B6E3C', 50, 92),
+
+      b5Started: s.b5Started, startB5: () => this.setState({b5Started:true}),
+      b5SegStartStyle: this.segStyle(s.b5Started, 0),
+      b5SegJ1NoStyle: this.segStyle(s.b5Started, 450),
+      b5SegJ2NoStyle: this.segStyle(s.b5Started, 900),
+      b5Panel1Style: this.panelStyle(false, '#BE3A2B', 76.7, 41),
+      b5Panel2Style: this.panelStyle(false, '#BE3A2B', 76.7, 71),
+      b5PanelFitsStyle: this.panelStyle(s.b5Started, '#0B6E3C', 50, 92, 1350),
+
+      b6Started: s.b6Started, startB6: () => this.setState({b6Started:true}),
+      b6AsideShown: s.b6AsideShown, showB6Aside: () => this.setState({b6AsideShown:true}),
+      b6FixStarted: s.b6FixStarted, startB6Fix: () => this.setState({b6FixStarted:true}),
+      b6Rebuilt: s.b6Rebuilt, rebuildB6: () => this.setState({b6Rebuilt:true}),
+      b6SegStartStyle: this.segStyle(s.b6Started, 0),
+      b6SegJ1NoStyle: this.segStyle(s.b6Started, 450),
+      b6SegJ2NoStyle: this.segStyle(s.b6Started, 900),
+      b6Panel1Style: this.panelStyle(false, '#BE3A2B', 76.7, 41),
+      b6Panel2Style: this.panelStyle(false, '#BE3A2B', 76.7, 71),
+      b6PanelFitsStyle: this.panelStyle(s.b6Started, '#0B6E3C', 50, 92, 1350),
+
+      b7StageSplit: s.b7Stage==='split', b7StageRecurse: s.b7Stage==='recurse', b7StageTree: s.b7Stage==='tree', b7StageClosing: s.b7Stage==='closing',
+      b7Question: b7q, b7QuestionText: b7q ? this.b7QuestionTextMap[b7q] : '',
+      b7Items: b7Layout.items, b7FieldHeightStyle: `min-height:${b7Layout.fieldHeight}px`,
+      b7YesCount: b7YesList.length, b7NoCount: b7NoList.length, b7YesWrong, b7NoWrong,
+      b7YesHeaderStyle: b7HeaderStyle(b7YesWrong), b7NoHeaderStyle: b7HeaderStyle(b7NoWrong),
+      b7TotalStyle: {textAlign:'center', fontFamily:"'Space Mono',monospace", fontWeight:700, fontSize:'22px', color: s.b7Computed ? '#F0A81C' : '#20262A'},
+      b7TotalText: String(s.b7TotalDisplay ?? 0),
+      b7LengthPillStyle: {textAlign:'center', background: b7q==='length'?'#F0A81C':'#FFFFFF', border:'2px solid #20262A', borderRadius:'4px', padding:'12px 18px', cursor:'pointer', fontWeight:600, fontSize:'15px'},
+      b7WeightPillStyle: {textAlign:'center', background: b7q==='weight'?'#F0A81C':'#FFFFFF', border:'2px solid #20262A', borderRadius:'4px', padding:'12px 18px', cursor:'pointer', fontWeight:600, fontSize:'15px'},
+      b7HeightPillStyle: {textAlign:'center', background: b7q==='height'?'#F0A81C':'#FFFFFF', border:'2px solid #20262A', borderRadius:'4px', padding:'12px 18px', cursor:'pointer', fontWeight:600, fontSize:'15px'},
+      selectB7Length: () => this.selectB7Question('length'),
+      selectB7Weight: () => this.selectB7Question('weight'),
+      selectB7Height: () => this.selectB7Question('height'),
+      b7BarLengthStyle: barBase(5, s.b7Computed, 0, '#F0A81C'),
+      b7BarWeightStyle: barBase(6, s.b7Computed, 80, '#8a938c'),
+      b7BarHeightStyle: barBase(8, s.b7Computed, 160, '#8a938c'),
+      b7BarLengthLabel: s.b7Computed ? '5' : '', b7BarWeightLabel: s.b7Computed ? '6' : '', b7BarHeightLabel: s.b7Computed ? '8' : '',
+      b7Computed: s.b7Computed, computeB7: () => this.setState({b7Computed:true}),
+      goRecurse: () => this.setState({b7Stage:'recurse', b7RecurseSafety:false}),
+      b7RecurseSafety: s.b7RecurseSafety, goRecurseSafety: () => this.setState({b7RecurseSafety:true}),
+      goTree: () => this.setState({b7Stage:'tree'}),
+      goClosing: () => this.setState({b7Stage:'closing'}),
+      b7CallbackHeight: s.beat3Choice === 'height',
+      restartLesson: () => this.setState({
+        beat:1, beat1Revealed:false, beat3Choice:null, b4AnimalId:'rooster',
+        b4ByAnimal: {
+          rooster:{doneQ1:false,q1Result:null,doneQ2:false,q2Result:null,branch:null},
+          elephant:{doneQ1:false,q1Result:null,doneQ2:false,q2Result:null,branch:null},
+          python:{doneQ1:false,q1Result:null,doneQ2:false,q2Result:null,branch:null},
+        },
+        b5Started:false, b6Started:false, b6AsideShown:false, b6FixStarted:false, b6Rebuilt:false,
+        b7Question:null, b7TotalDisplay:null, b7Computed:false, b7Stage:'split', b7RecurseSafety:false,
+      }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

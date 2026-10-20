@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0}
+    a{color:#0B6E3C}
+    a:hover{color:#0B6E3C;text-decoration:underline}
+  </style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<section data-label="Title" data-speaker-notes="Introduce the framing: we are going to teach a computer to sort animals by whether they fit in a car, and use that to explain decision trees." style="background:#20262A;color:#FFFFFF;font-family:'Inter',sans-serif;display:flex;flex-direction:column;justify-content:center;padding:0 140px">
+  <div style="font-family:'Space Mono',monospace;font-size:26px;letter-spacing:0.1em;text-transform:uppercase;color:#F0A81C;margin-bottom:28px">Classification</div>
+  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:96px;letter-spacing:-0.02em;line-height:1.05;max-width:1500px">Will it fit in Matthew's car?</div>
+  <div style="font-size:34px;margin-top:32px;max-width:1200px;opacity:0.85">How a computer learns to sort animals by asking a few short questions.</div>
+  <div style="display:flex;gap:20px;margin-top:64px">
+    <div style="width:110px;height:110px;border-radius:6px;overflow:hidden;border:3px solid #F0A81C"><img src="assets/animals/rooster.jpg" alt="Rooster" style="width:100%;height:100%;object-fit:cover"></div>
+    <div style="width:110px;height:110px;border-radius:6px;overflow:hidden;border:3px solid #F0A81C"><img src="assets/animals/great-dane.jpg" alt="Great Dane" style="width:100%;height:100%;object-fit:cover"></div>
+    <div style="width:110px;height:110px;border-radius:6px;overflow:hidden;border:3px solid #F0A81C"><img src="assets/animals/elephant.jpg" alt="Elephant" style="width:100%;height:100%;object-fit:cover"></div>
+    <div style="width:110px;height:110px;border-radius:6px;overflow:hidden;border:3px solid #F0A81C"><img src="assets/animals/python.jpg" alt="Python" style="width:100%;height:100%;object-fit:cover"></div>
+    <div style="width:110px;height:110px;border-radius:6px;overflow:hidden;border:3px solid #F0A81C"><img src="assets/animals/goat.jpg" alt="Goat" style="width:100%;height:100%;object-fit:cover"></div>
+  </div>
+</section>
+
+<section data-label="Warm-up" data-speaker-notes="Warm-up: pupils already classify things instantly by size, weight and rules. The point is to name what they used, then ask how a computer would do the same." style="background:#EAEFE9;color:#20262A;font-family:'Inter',sans-serif;display:flex;flex-direction:column;padding:100px 140px 80px">
+  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:64px;letter-spacing:-0.02em;margin-bottom:16px">What fits in my school bag?</div>
+  <div style="font-size:32px;opacity:0.75;margin-bottom:48px">apple &middot; ruler &middot; lunch box &middot; football &middot; brick &middot; phone</div>
+  <div style="display:flex;flex-direction:column;gap:22px;max-width:1300px">
+    <div style="display:flex;align-items:center;gap:20px">
+      <div style="background:#0B6E3C;color:#FFFFFF;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:26px;padding:12px 26px;border-radius:6px;white-space:nowrap;flex:0 0 260px;text-align:center">These are fine</div>
+      <div style="font-size:32px">apple, ruler, lunch box</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px">
+      <div style="background:#BE3A2B;color:#FFFFFF;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:26px;padding:12px 26px;border-radius:6px;white-space:nowrap;flex:0 0 260px;text-align:center">Won't fit</div>
+      <div style="font-size:32px">football</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px">
+      <div style="background:#BE3A2B;color:#FFFFFF;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:26px;padding:12px 26px;border-radius:6px;white-space:nowrap;flex:0 0 260px;text-align:center">Fits, too heavy</div>
+      <div style="font-size:32px">brick</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px">
+      <div style="background:#BE3A2B;color:#FFFFFF;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:26px;padding:12px 26px;border-radius:6px;white-space:nowrap;flex:0 0 260px;text-align:center">Fits, not allowed</div>
+      <div style="font-size:32px">phone</div>
+    </div>
+  </div>
+  <div style="font-size:36px;font-weight:600;margin-top:56px;max-width:1300px">You worked that out in about two seconds. How would we teach a computer to do it?</div>
+</section>
+
+<section data-label="Meet Matthew" data-speaker-notes="Matthew wants to know which animals he can take on a drive. Two obviously fit, one obviously doesn't. Ask: on what basis, and how do we teach that to a computer?" style="background:#EAEFE9;color:#20262A;font-family:'Inter',sans-serif;display:flex;flex-direction:column;padding:70px 140px 60px">
+  <div style="display:flex;gap:40px;align-items:center;margin-bottom:36px">
+    <div style="flex:0 0 220px;width:220px;height:220px;border-radius:8px;overflow:hidden;border:4px solid #20262A"><img src="assets/animals/matthew.jpg" alt="Matthew" style="width:100%;height:100%;object-fit:cover"></div>
+    <div style="flex:1">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:54px;letter-spacing:-0.02em;margin-bottom:14px">Meet Matthew</div>
+      <div style="font-size:28px;max-width:900px;line-height:1.35">Matthew loves animals and wants to go on a road trip with them. He has just bought a brand new car, and he wants to know which animal he can take for a drive.</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:28px">
+    <div style="flex:1;background:#FFFFFF;border:3px solid #20262A;border-radius:8px;overflow:hidden">
+      <div style="width:100%;height:220px;overflow:hidden"><img src="assets/animals/rooster.jpg" alt="Rooster" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="padding:12px;text-align:center;font-size:26px">Rooster</div>
+      <div style="background:#0B6E3C;color:#FFFFFF;text-align:center;font-family:'Space Mono',monospace;font-size:24px;padding:12px">FITS</div>
+    </div>
+    <div style="flex:1;background:#FFFFFF;border:3px solid #20262A;border-radius:8px;overflow:hidden">
+      <div style="width:100%;height:220px;overflow:hidden"><img src="assets/animals/great-dane.jpg" alt="Great Dane" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="padding:12px;text-align:center;font-size:26px">Great Dane</div>
+      <div style="background:#0B6E3C;color:#FFFFFF;text-align:center;font-family:'Space Mono',monospace;font-size:24px;padding:12px">FITS</div>
+    </div>
+    <div style="flex:1;background:#FFFFFF;border:3px solid #20262A;border-radius:8px;overflow:hidden">
+      <div style="width:100%;height:220px;overflow:hidden"><img src="assets/animals/elephant.jpg" alt="Elephant" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="padding:12px;text-align:center;font-size:26px">Elephant</div>
+      <div style="background:#BE3A2B;color:#FFFFFF;text-align:center;font-family:'Space Mono',monospace;font-size:24px;padding:12px">DOES NOT FIT</div>
+    </div>
+  </div>
+  <div style="font-size:28px;font-weight:600;margin-top:32px;max-width:1300px;line-height:1.35">He is right. But on what basis, and how do we teach that to a computer, so that when a brand new animal turns up, it can decide on its own?</div>
+</section>
+
+<section data-label="What to measure" data-speaker-notes="Three candidate questions on the table: weight, length, height. Each has a reason. Page 8 will show which one the computer actually picks, and why." style="background:#FFFFFF;color:#20262A;font-family:'Inter',sans-serif;display:flex;flex-direction:column;padding:100px 140px 80px">
+  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:64px;letter-spacing:-0.02em;margin-bottom:16px">What should we measure?</div>
+  <div style="font-size:32px;opacity:0.7;margin-bottom:56px">Three candidate questions, each with a reason.</div>
+  <div style="display:flex;gap:32px">
+    <div style="flex:1;background:#EAEFE9;border:3px solid #20262A;border-radius:10px;padding:36px">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:32px;margin-bottom:16px">Is it heavier than 150 kg?</div>
+      <div style="font-size:26px;font-style:italic;opacity:0.8">Matthew is in the car too: the car has a limit.</div>
+    </div>
+    <div style="flex:1;background:#EAEFE9;border:3px solid #F0A81C;border-radius:10px;padding:36px">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:32px;margin-bottom:16px">Is it longer than 1.5 m?</div>
+      <div style="font-size:26px;font-style:italic;opacity:0.8">It has to fit across the back seat.</div>
+    </div>
+    <div style="flex:1;background:#EAEFE9;border:3px solid #20262A;border-radius:10px;padding:36px">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:32px;margin-bottom:16px">Is it taller than the car door?</div>
+      <div style="font-size:26px;font-style:italic;opacity:0.8">It has to get in.</div>
+    </div>
+  </div>
+  <div style="font-size:30px;margin-top:56px;max-width:1300px">All three sound reasonable. Only counting mistakes will tell us which one actually works best.</div>
+</section>
+
+<section data-label="Walking the tree" data-speaker-notes="Two questions sort rooster, great dane, elephant and python correctly. Python is light but far too long: length beats weight for this animal." style="background:#EAEFE9;color:#20262A;font-family:'Inter',sans-serif;display:flex;gap:64px;padding:100px 140px 80px">
+  <div style="flex:1;display:flex;flex-direction:column">
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:56px;letter-spacing:-0.02em;margin-bottom:40px">Two questions, four animals</div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;align-items:center;gap:20px;background:#FFFFFF;border:3px solid #0B6E3C;border-radius:8px;padding:16px">
+        <div style="width:76px;height:76px;border-radius:6px;overflow:hidden;flex:0 0 76px"><img src="assets/animals/rooster.jpg" alt="Rooster" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="font-size:26px">Rooster: not long, not heavy &rarr; <b style="color:#0B6E3C">FITS</b></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;background:#FFFFFF;border:3px solid #BE3A2B;border-radius:8px;padding:16px">
+        <div style="width:76px;height:76px;border-radius:6px;overflow:hidden;flex:0 0 76px"><img src="assets/animals/elephant.jpg" alt="Elephant" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="font-size:26px">Elephant: longer than 1.5m &rarr; <b style="color:#BE3A2B">DOES NOT FIT</b></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;background:#FFFFFF;border:3px solid #BE3A2B;border-radius:8px;padding:16px">
+        <div style="width:76px;height:76px;border-radius:6px;overflow:hidden;flex:0 0 76px"><img src="assets/animals/python.jpg" alt="Python" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="font-size:26px">Python: light, but 4m long &rarr; <b style="color:#BE3A2B">DOES NOT FIT</b></div>
+      </div>
+    </div>
+    <div style="font-size:28px;font-style:italic;margin-top:32px;opacity:0.8">Light enough. Nowhere near short enough.</div>
+  </div>
+  <div style="flex:0 0 460px;position:relative">
+    <svg viewBox="0 0 300 500" style="width:100%;height:100%;display:block;overflow:visible">
+      <path d="M150,10 L150,110" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none"></path>
+      <path d="M150,110 L230,110 L230,180" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+      <path d="M150,110 L150,260" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+      <path d="M150,260 L230,260 L230,330" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+      <path d="M150,260 L150,420" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" fill="none"></path>
+      <circle cx="150" cy="10" r="7" fill="#20262A"></circle>
+      <circle cx="150" cy="110" r="9" fill="#20262A"></circle>
+      <circle cx="150" cy="260" r="9" fill="#20262A"></circle>
+    </svg>
+    <div style="position:absolute;left:16%;top:12%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:24px;opacity:0.65;white-space:nowrap">longer than 1.5m?</div>
+    <div style="position:absolute;left:16%;top:47%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:24px;opacity:0.65;white-space:nowrap">heavier than 150kg?</div>
+    <div style="position:absolute;left:76.7%;top:41%;transform:translate(-50%,-50%);width:34%;min-width:110px;padding:14px 8px;border-radius:6px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:24px;background:#BE3A2B;color:#FFFFFF;box-sizing:border-box">DOES NOT FIT</div>
+    <div style="position:absolute;left:76.7%;top:71%;transform:translate(-50%,-50%);width:34%;min-width:110px;padding:14px 8px;border-radius:6px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:24px;background:#FFFFFF;color:#8a938c;border:2px solid #C6CEC8;box-sizing:border-box">DOES NOT FIT</div>
+    <div style="position:absolute;left:50%;top:92%;transform:translate(-50%,-50%);width:34%;min-width:110px;padding:14px 8px;border-radius:6px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:24px;background:#FFFFFF;color:#8a938c;border:2px solid #C6CEC8;box-sizing:border-box">FITS</div>
+  </div>
+</section>
+
+<section data-label="Unseen animal" data-speaker-notes="A llama was never in the training table. The computer still classifies it correctly, because it only needs the two measurements, not the name." style="background:#EAEFE9;color:#20262A;font-family:'Inter',sans-serif;display:flex;gap:64px;padding:100px 140px 80px">
+  <div style="flex:1;display:flex;flex-direction:column">
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:56px;letter-spacing:-0.02em;margin-bottom:16px">An animal Matthew has never seen</div>
+    <div style="font-size:30px;margin-bottom:40px;max-width:800px">A llama wants a lift. It was never in the table. Nobody wrote a rule for it.</div>
+    <div style="display:flex;align-items:center;gap:24px;background:#FFFFFF;border:3px solid #20262A;border-radius:8px;padding:24px;max-width:640px">
+      <div style="width:130px;height:130px;border-radius:8px;flex:0 0 130px;background:#EAEFE9;display:flex;align-items:center;justify-content:center;font-size:76px">&#129388;</div>
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:30px">Llama</div>
+        <div style="font-family:'Space Mono',monospace;font-size:24px;opacity:0.8;margin-top:8px">90 kg &middot; 1.4 m long</div>
+      </div>
+    </div>
+    <div style="font-size:32px;font-weight:600;margin-top:44px;max-width:800px">Nobody told it about llamas. It worked it out from the questions.</div>
+  </div>
+  <div style="flex:0 0 460px;position:relative">
+    <svg viewBox="0 0 300 500" style="width:100%;height:100%;display:block;overflow:visible">
+      <path d="M150,10 L150,110" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none"></path>
+      <path d="M150,110 L230,110 L230,180" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+      <path d="M150,110 L150,260" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none"></path>
+      <path d="M150,260 L230,260 L230,330" stroke="#C6CEC8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+      <path d="M150,260 L150,420" stroke="#F0A81C" stroke-width="12" stroke-linecap="round" fill="none"></path>
+      <circle cx="150" cy="10" r="7" fill="#20262A"></circle>
+      <circle cx="150" cy="110" r="9" fill="#20262A"></circle>
+      <circle cx="150" cy="260" r="9" fill="#20262A"></circle>
+    </svg>
+    <div style="position:absolute;left:16%;top:12%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:24px;opacity:0.65;white-space:nowrap">longer than 1.5m?</div>
+    <div style="position:absolute;left:16%;top:47%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:24px;opacity:0.65;white-space:nowrap">heavier than 150kg?</div>
+    <div style="position:absolute;left:76.7%;top:41%;transform:translate(-50%,-50%);width:34%;min-width:110px;padding:14px 8px;border-radius:6px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:24px;background:#FFFFFF;color:#8a938c;border:2px solid #C6CEC8;box-sizing:border-box">DOES NOT FIT</div>
+    <div style="position:absolute;left:76.7%;top:71%;transform:translate(-50%,-50%);width:34%;min-width:110px;padding:14px 8px;border-radius:6px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:24px;background:#FFFFFF;color:#8a938c;border:2px solid #C6CEC8;box-sizing:border-box">DOES NOT FIT</div>
+    <div style="position:absolute;left:50%;top:92%;transform:translate(-50%,-50%);width:34%;min-width:110px;padding:14px 8px;border-radius:6px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:24px;background:#0B6E3C;color:#FFFFFF;box-sizing:border-box">FITS</div>
+  </div>
+</section>
+
+<section data-label="The skunk" data-speaker-notes="The skunk technically fits by the two measurements taken so far. This is where the lesson turns: the computer only knows what it was told to measure, and nobody measured smell or safety." style="background:#EAEFE9;color:#20262A;font-family:'Inter',sans-serif;display:flex;flex-direction:column;padding:100px 140px 70px">
+  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:64px;letter-spacing:-0.02em;margin-bottom:36px">The skunk</div>
+  <div style="display:flex;gap:56px;align-items:flex-start">
+    <div style="flex:1">
+      <div style="display:flex;align-items:center;gap:22px;background:#FFFFFF;border:3px solid #20262A;border-radius:8px;padding:20px;margin-bottom:28px">
+        <div style="width:110px;height:110px;border-radius:8px;flex:0 0 110px;background:#EAEFE9;display:flex;align-items:center;justify-content:center;font-size:64px">&#129446;</div>
+        <div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:30px">Skunk</div>
+          <div style="font-family:'Space Mono',monospace;font-size:24px;opacity:0.8;margin-top:6px">4 kg &middot; 0.6 m long</div>
+        </div>
+      </div>
+      <div style="border-left:5px solid #F0A81C;padding-left:22px">
+        <div style="font-size:28px;font-style:italic">It fits. It absolutely fits.</div>
+        <div style="font-size:28px;font-style:italic;margin-top:6px">Nobody gave the computer a question about smell.</div>
+        <div style="font-size:26px;font-weight:600;margin-top:18px">The computer only knows what we chose to measure.</div>
+      </div>
+    </div>
+    <div style="flex:1;background:#FFFFFF;border:3px solid #20262A;border-radius:10px;padding:32px">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;opacity:0.6;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:14px">The fix</div>
+      <div style="font-size:26px;line-height:1.5">A human, not the computer, adds a column: <b>is it safe to carry?</b> Mark the skunk and the porcupine as no.</div>
+      <div style="margin-top:24px;font-family:'Space Mono',monospace;font-size:24px;line-height:2">
+        <div>1. longer than 1.5m? <b>no</b></div>
+        <div>2. heavier than 150kg? <b>no</b></div>
+        <div>3. safe to carry? <span style="background:#F0A81C;padding:3px 10px;border-radius:4px;font-weight:700">no, new</span></div>
+      </div>
+      <div style="background:#BE3A2B;color:#FFFFFF;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;padding:14px;border-radius:6px;margin-top:20px">DOES NOT FIT</div>
+    </div>
+  </div>
+  <div style="font-size:28px;font-weight:600;margin-top:40px">Nobody rewrote the rules. We gave it one more thing to measure, and it built itself a new tree.</div>
+</section>
+
+<section data-label="Counting mistakes" data-speaker-notes="Three candidate questions, scored by how many animals each one puts in the wrong pile. Fewest mistakes wins: length." style="background:#FFFFFF;color:#20262A;font-family:'Inter',sans-serif;display:flex;flex-direction:column;padding:100px 140px 80px">
+  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:64px;letter-spacing:-0.02em;margin-bottom:12px">The better question</div>
+  <div style="font-size:32px;opacity:0.7;margin-bottom:56px">Score every candidate by how many animals it puts in the wrong pile.</div>
+  <div style="display:flex;flex-direction:column;gap:32px;max-width:1400px">
+    <div style="display:flex;align-items:center;gap:28px">
+      <div style="width:420px;font-size:30px;font-weight:700;color:#F0A81C">longer than 1.5m?</div>
+      <div style="flex:1;height:40px;background:#EAEFE9;border-radius:6px;overflow:hidden"><div style="height:100%;width:26%;background:#F0A81C;border-radius:6px"></div></div>
+      <div style="font-family:'Space Mono',monospace;font-size:30px;width:60px;text-align:right">5</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px">
+      <div style="width:420px;font-size:30px;font-weight:700">heavier than 150kg?</div>
+      <div style="flex:1;height:40px;background:#EAEFE9;border-radius:6px;overflow:hidden"><div style="height:100%;width:31%;background:#8a938c;border-radius:6px"></div></div>
+      <div style="font-family:'Space Mono',monospace;font-size:30px;width:60px;text-align:right">6</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px">
+      <div style="width:420px;font-size:30px;font-weight:700">safe to carry?</div>
+      <div style="flex:1;height:40px;background:#EAEFE9;border-radius:6px;overflow:hidden"><div style="height:100%;width:42%;background:#8a938c;border-radius:6px"></div></div>
+      <div style="font-family:'Space Mono',monospace;font-size:30px;width:60px;text-align:right">8</div>
+    </div>
+  </div>
+  <div style="font-size:34px;font-weight:600;margin-top:56px">Fewest mistakes wins: <span style="color:#F0A81C">is it longer than 1.5 m?</span> It goes first. The others are asked afterward, on whoever is left.</div>
+</section>
+
+<section data-label="Finished tree" data-speaker-notes="Three questions, chosen purely by counting, sort all eighteen animals correctly. This is the finished decision tree." style="background:#EAEFE9;color:#20262A;font-family:'Inter',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 140px">
+  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:64px;letter-spacing:-0.02em;margin-bottom:16px">Three questions. Chosen by counting.</div>
+  <div style="font-size:30px;opacity:0.7;margin-bottom:48px">The finished decision tree.</div>
+  <div style="max-width:900px;width:100%;background:#FFFFFF;border:4px solid #20262A;border-radius:12px;padding:48px">
+    <div style="font-family:'Space Mono',monospace;font-size:30px;line-height:2.3">
+      <div>1. longer than 1.5m? <span style="opacity:0.5">yes &rarr;</span> <b style="color:#BE3A2B">DOES NOT FIT</b></div>
+      <div>2. heavier than 150kg? <span style="opacity:0.5">yes &rarr;</span> <b style="color:#BE3A2B">DOES NOT FIT</b></div>
+      <div>3. safe to carry? <span style="opacity:0.5">no &rarr;</span> <b style="color:#BE3A2B">DOES NOT FIT</b></div>
+    </div>
+    <div style="margin-top:28px;padding-top:28px;border-top:3px solid #C6CEC8;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:32px;text-align:center;color:#0B6E3C">otherwise &rarr; FITS</div>
+  </div>
+</section>
+
+<section data-label="Closing" data-speaker-notes="Wrap up: name the rejected question, connect back to the school-bag warm-up, and name the real algorithms (ID3, C4.5, CART) that do exactly this." style="background:#20262A;color:#FFFFFF;font-family:'Inter',sans-serif;display:flex;flex-direction:column;padding:100px 140px 80px">
+  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:60px;letter-spacing:-0.02em;margin-bottom:48px">This has a name</div>
+  <div style="display:flex;gap:32px">
+    <div style="flex:1;background:#2B3238;border:2px solid #444C52;border-radius:10px;padding:36px">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:28px;margin-bottom:14px;color:#F0A81C">The rejected question</div>
+      <div style="font-size:26px;font-style:italic;line-height:1.5">It never once asked whether the animal was taller than the car door, even though that was on offer too.</div>
+      <div style="font-size:23px;margin-top:14px;opacity:0.75">Won't fit, too heavy, not allowed: the same three things you checked in your school bag at the start.</div>
+    </div>
+    <div style="flex:1;background:#2B3238;border:2px solid #444C52;border-radius:10px;padding:36px">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:28px;margin-bottom:14px;color:#F0A81C">The real algorithms</div>
+      <div style="font-size:26px;line-height:1.5"><b>ID3</b> and <b>C4.5</b> score questions using information gain; <b>CART</b>, the one inside most software today, uses Gini impurity. We counted mistakes, which is simpler and gives the same tree here.</div>
+    </div>
+  </div>
+</section>
+
+</x-import>
+
+</x-dc>
+</body>
+</html>
