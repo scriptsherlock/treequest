@@ -1,6 +1,8 @@
 # Tree Quest — Decision tree lab
 
-A hands-on HTML/CSS/JavaScript decision tree lab for Years 6–9, with an original blocky game theme, local monospace fonts and emoji item icons. No build step, accounts, API keys, packages, analytics or runtime network requests. The original car demo is preserved alongside it.
+**New: [Gear Up](game.html)** is a five-level battle game built on the same engine. Players teach the Wise Tree from scout notes, then it picks weapons against new villains. Each level teaches one idea: training data, underfitting, missing features, noisy labels and imbalanced data. Level data and the hidden rule live in `quest-data.js`; art is Kenney.nl (CC0) in `assets/gear/`. Add `#teacher` to the URL for answers and to unlock every level.
+
+A hands-on HTML/CSS/JavaScript decision tree lab for Years 6–9, with an original blocky game theme, local monospace fonts and emoji item icons. No build step, accounts, API keys, packages, analytics or runtime network requests.
 
 The first screen focuses on choosing a question, seeing named items in Yes/No groups, and using that question. The large introductory banner has been removed. Extra questions, automatic training, mathematical explanations, scores and the full example list are expandable. Save, Open, project editing and teacher notes live in the **🎒 Project** menu. In Test, the first unseen item is selected automatically and **Try another item** moves through the set.
 
@@ -43,9 +45,9 @@ The folder supplied in this workspace has no `.git` checkout or configured remot
 3. Open **Actions → Publish Branch lab to GitHub Pages → Run workflow**, or push another change to `main`.
 4. Open the deployment URL shown by the completed workflow, usually `https://OWNER.github.io/REPOSITORY/`.
 
-The workflow runs the checks, packages only the six public lab files in `dist/`, and publishes those. The old `uploads/` folder and original exports are not included in that deployment. No dependencies are installed.
+The workflow runs the checks, packages the lab, the Gear Up game and its art in `dist/`, and publishes those. No dependencies are installed.
 
-**Without Actions:** run `npm run package`, copy the six files from `dist/` to a repository's root or `docs/`, and choose that folder under **Settings → Pages → Deploy from a branch**. Alternatively publish the current root directly; that also exposes the original files and uploads at their paths.
+**Without Actions:** run `npm run package`, copy the contents of `dist/` to a repository's root or `docs/`, and choose that folder under **Settings → Pages → Deploy from a branch**. Alternatively publish the current root directly.
 
 All assets use relative URLs, so GitHub project subpaths work. No back end or Python server is required. You must enable Pages in the repository and have permission to publish it. GitHub Pages sites are normally public; keep student project files out of the public repository.
 

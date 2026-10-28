@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#273f2b">
+  <meta name="description" content="Tree Quest: Gear Up. Teach the Wise Tree to pick the right weapon, then battle the villains.">
+  <title>Tree Quest: Gear Up</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <style>
+:root{--ink:#24301f;--paper:#fffdf2;--line:#3d562d;--leaf:#6b9741;--sky:#d9f0f7;--warn:#d9542b;--gold:#f2b632;font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;color:var(--ink)}
+*{box-sizing:border-box}html,body{margin:0;height:100%}body{background:#2b4030;font-size:16px;line-height:1.4}
+button{font:inherit;color:inherit;cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}
+:focus-visible{outline:4px solid #f2b632;outline-offset:3px}
+h1,h2,h3,p{margin:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.bar{display:flex;align-items:center;gap:14px;background:#293e2c;color:#eff2d8;border-bottom:5px solid #6c9545;padding:8px 18px;min-height:58px}
+.brand{font-weight:900;font-size:20px;letter-spacing:1px;text-shadow:2px 2px #14251a;white-space:nowrap}
+.bar .where{font-size:14px;color:#cfe0b4}.bar .spacer{flex:1}
+.hearts{display:flex;gap:4px;align-items:center}.hearts img{width:26px;height:26px}.heart-on{filter:drop-shadow(0 0 0 #e0475b) hue-rotate(0) saturate(1);background:#e0475b;border-radius:50%;padding:3px}.heart-off{background:#7d8a76;border-radius:50%;padding:3px;opacity:.6}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:3px solid var(--line);background:#ebefd7;padding:10px 16px;font-weight:800;font-size:16px;box-shadow:inset 2px 2px #fff,3px 3px 0 #1f2f1a;min-height:46px;border-radius:6px}
+.btn:hover:not(:disabled){background:#dce8be}.btn:active:not(:disabled){transform:translate(2px,2px);box-shadow:none}
+.btn.go{background:#6b9741;color:#fff;text-shadow:1px 1px #375824}.btn.go:hover:not(:disabled){background:#5d8a35}
+.btn.gold{background:var(--gold)}.btn.big{font-size:20px;padding:14px 24px}.btn.small{font-size:14px;min-height:36px;padding:6px 10px}
+.btn.ghost{background:transparent;color:#eff2d8;border-color:#6c9545;box-shadow:none}
+main{min-height:calc(100vh - 63px);background-size:cover;background-position:center bottom;position:relative}
+.scene{max-width:1360px;margin:0 auto;padding:16px}
+.panel{background:var(--paper);border:3px solid var(--line);border-radius:10px;box-shadow:4px 4px 0 #1f2f1a99;padding:14px}
+.panel h2{font-size:18px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+/* title */
+.title-card{max-width:900px;margin:30px auto;text-align:center}.title-card h1{font-size:46px;color:#fff;text-shadow:3px 3px 0 #1f2f1a,0 0 18px #0006;letter-spacing:1px}
+.title-card .tag{color:#fff;font-size:20px;text-shadow:2px 2px #1f2f1a;margin:6px 0 20px}
+.heroes{display:flex;justify-content:center;gap:18px;margin:14px 0}
+.hero-pick{background:#fffdf2;border:4px solid #c3ccb0;border-radius:12px;padding:10px 18px;display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:800}
+.hero-pick img{height:120px}.hero-pick[aria-pressed=true]{border-color:var(--gold);box-shadow:0 0 0 4px #f2b63299;background:#fff8dc}
+.map{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.stone{width:150px;background:#fffdf2;border:3px solid var(--line);border-radius:12px;padding:8px;text-align:center;font-weight:800;font-size:14px}
+.stone .num{font-size:26px}.stone[disabled]{opacity:.55;background:#d6d9c8}.stone .stars{color:#c98a00;letter-spacing:2px;min-height:20px}
+/* story */
+.story{display:flex;align-items:flex-end;justify-content:center;gap:24px;min-height:70vh;padding-top:30px}
+.story .tree-guy{width:200px;filter:drop-shadow(4px 6px 0 #0003)}.story .hero{height:200px}
+.bubble{position:relative;background:#fff;border:4px solid var(--line);border-radius:18px;padding:22px 26px;max-width:520px;font-size:22px;font-weight:700;align-self:center;box-shadow:5px 5px 0 #1f2f1a88}
+.bubble:after{content:"";position:absolute;left:-22px;bottom:30px;border:12px solid transparent;border-right:14px solid var(--line)}
+.bubble .who{font-size:14px;color:#5d7a3b;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}.bubble .actions{margin-top:16px;display:flex;gap:10px;justify-content:flex-end}
+/* camp */
+.camp{display:grid;grid-template-columns:minmax(300px,1.05fr) minmax(360px,1.5fr) minmax(250px,.85fr);gap:14px;align-items:start}
+.notes{max-height:calc(100vh - 150px);overflow:auto}.note-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.note{border:2px solid #c3ccb0;border-radius:8px;background:#fff;padding:6px;font-size:12px;position:relative}
+.note.fresh{border-color:var(--gold);background:#fff8dc}.note.fixed{border-color:#4f9a3c}.note .pic{height:54px;display:flex;justify-content:center}.note .pic img{height:54px}
+.note .nm{font-weight:800;font-size:13px;text-align:center;margin:2px 0}.chips{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
+.chip{background:#eef2df;border:1px solid #c3ccb0;border-radius:20px;padding:1px 6px;font-size:11.5px;white-space:nowrap}.chip.mystery{background:#e6e0f4;border-color:#a99bd0}
+.gear{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:13px}.gear i{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;flex:none;border:2px solid #0003}.gear i img{width:18px;height:18px}
+.note .needs{display:flex;justify-content:center;margin-top:4px;padding-top:4px;border-top:1px dashed #c3ccb0}
+.note .check{position:absolute;top:3px;right:3px;font-size:12px;min-height:0;padding:2px 5px;border-width:2px;box-shadow:none}
+.tree-box svg{width:100%;height:auto;max-height:calc(100vh - 260px);display:block}
+.tree-empty{display:grid;place-items:center;text-align:center;min-height:260px;color:#5d6b4c;gap:8px}.tree-empty img{width:110px}
+.score{display:flex;gap:10px;justify-content:center;margin-top:8px;font-weight:800}.score span{background:#eef2df;border-radius:8px;padding:6px 12px}
+.controls{display:flex;flex-direction:column;gap:12px}
+.qlist{display:flex;flex-direction:column;gap:6px}.qbtn{text-align:left;border:2px solid #c3ccb0;background:#fff;border-radius:8px;padding:8px}.qbtn:hover{border-color:var(--leaf);background:#f3f8e6}
+.meter{height:10px;background:#e3e6d4;border-radius:6px;margin-top:4px;overflow:hidden}.meter b{display:block;height:100%;background:var(--leaf)}
+.depth{display:flex;align-items:center;gap:10px;font-weight:800}.depth output{font-size:30px;min-width:30px;text-align:center}.depth input{flex:1;accent-color:#517c32}
+.tip{background:#fff8dc;border:2px dashed #e0b84c;border-radius:8px;padding:8px;font-size:14px}
+.tool{display:flex;flex-direction:column;gap:6px;border:2px solid #c3ccb0;border-radius:8px;padding:8px;background:#fff}
+/* battle */
+.arena{position:relative;height:330px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 8%}
+.arena .hero{height:190px;transition:transform .3s}.arena .hero.attack{transform:translateX(60px)}
+.foe{display:flex;flex-direction:column;align-items:center;gap:4px}.foe img.body{height:180px;transition:transform .3s,opacity .6s,filter .3s}
+.foe.boss img.body{height:240px}.foe .crown{width:56px;background:var(--gold);border-radius:50%;padding:8px;margin-bottom:-14px;z-index:1}
+.foe.flies img.body{animation:bob 1.6s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-14px)}}
+.foe.beaten img.body{opacity:0;transform:scale(.4) rotate(25deg)}.foe.angry img.body{filter:drop-shadow(0 0 12px #d9542b)}
+.nameplate{background:#fffdf2;border:3px solid var(--line);border-radius:8px;padding:4px 10px;font-weight:900;text-align:center}
+.flying-gear{position:absolute;left:30%;bottom:140px;transform:scale(2.2)}.flying-gear.go{animation:throw .7s ease-in forwards}@keyframes throw{to{left:62%;bottom:160px;transform:scale(2.4) rotate(360deg)}}
+.boom{position:absolute;left:50%;top:30px;transform:translateX(-50%);font-size:34px;font-weight:900;color:#fff;text-shadow:3px 3px 0 #1f2f1a;white-space:nowrap}
+.battle-low{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:10px}
+.lineup{display:flex;gap:6px;flex-wrap:wrap}.lineup span{width:38px;height:38px;border-radius:8px;display:grid;place-items:center;background:#ffffffaa;border:2px solid #c3ccb0;font-weight:900}.lineup .now{border-color:var(--gold);background:#fff8dc}.lineup .win{background:#cfe8b8}.lineup .lose{background:#f6c7b8}
+.say{font-size:20px;font-weight:800;min-height:56px}.say small{display:block;font-size:15px;font-weight:600;color:#55613f}
+/* result */
+.result{max-width:760px;margin:24px auto;text-align:center}.result .big{font-size:40px;font-weight:900}.result .stars{font-size:44px;color:#c98a00;letter-spacing:6px}
+.result img.hero{height:180px}.lesson{text-align:left;background:#eef6ff;border:3px solid #3d74a8;border-radius:10px;padding:12px;margin:14px 0}.lesson h3{display:flex;gap:8px;align-items:center}
+.lesson img{width:28px;background:#3d74a8;border-radius:6px;padding:3px}
+.real{display:inline-block;background:#3d74a8;color:#fff;border-radius:20px;padding:1px 10px;font-size:13px;margin-left:6px}
+.finale-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;text-align:left}
+dialog{border:4px solid var(--line);border-radius:12px;max-width:640px;padding:20px}dialog::backdrop{background:#0008}
+table{border-collapse:collapse;width:100%;font-size:14px}td,th{border:1px solid #c3ccb0;padding:5px;text-align:left}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#293e2c;color:#fff;padding:10px 16px;border-radius:8px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none}.toast.show{opacity:1}
+.credit{position:fixed;right:8px;bottom:4px;font-size:11px;color:#fffc;text-shadow:1px 1px #000}
+.tree-node rect{stroke:#3d562d;stroke-width:3}.tree-node text{font-size:14px;font-weight:800;fill:#24301f}.tree-edge{stroke:#8d9c78;stroke-width:5;fill:none}.tree-edge.on{stroke:#f2b632;stroke-width:9}
+.tree-node.on rect{stroke:#e09a00;stroke-width:6}.tree-node.pick{cursor:pointer}.tree-node.sel rect{stroke:#e09a00;stroke-dasharray:8 5}
+@media (max-width:1050px){.camp{grid-template-columns:1fr 1fr}.camp .controls{grid-column:1/-1}.battle-low{grid-template-columns:1fr}}
+@media (max-width:700px){.camp{grid-template-columns:1fr}.arena{height:250px}.arena .hero{height:130px}.foe img.body{height:120px}.foe.boss img.body{height:160px}.title-card h1{font-size:32px}.story{flex-wrap:wrap}.bubble:after{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+  <script defer src="./classifier.js"></script>
+  <script defer src="./quest-data.js"></script>
+  <script defer src="./game.js"></script>
+</head>
+<body>
+  <header class="bar">
+    <span class="brand">🌳 TREE QUEST: GEAR UP</span>
+    <span class="where" id="where"></span>
+    <span class="spacer"></span>
+    <span class="hearts" id="hearts" aria-live="polite"></span>
+    <button class="btn small ghost" data-action="help">❓ Help</button>
+    <button class="btn small ghost" data-action="home">🗺️ Map</button>
+  </header>
+  <main id="app" tabindex="-1"></main>
+  <p id="live" class="sr-only" aria-live="polite"></p>
+  <div id="toast" class="toast" role="status"></div>
+  <dialog id="dialog"><div id="dialog-body"></div><p style="text-align:right;margin-top:14px"><button class="btn" data-action="close">Close</button></p></dialog>
+  <span class="credit">Art: Kenney.nl (CC0)</span>
+</body>
+</html>
