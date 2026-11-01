@@ -40,6 +40,12 @@ The full campaign uses normal progression without teacher unlocks. Focused lesso
 
 ## Reproduce
 
+## GitHub Pages verification
+
+Published to [scriptsherlock/treequest](https://github.com/scriptsherlock/treequest). The [Actions deployment](https://github.com/scriptsherlock/treequest/actions/runs/41307946902) succeeded. The [live adventure](https://scriptsherlock.github.io/treequest/game.html) then passed all **18 full-campaign Chromium checks**, including real incorrect predictions, all five worlds, evidence tools, waves, movement, full screen, cancellation, reload and desktop layouts. No browser exceptions or failed asset responses were recorded. The live lab and original campaign also match their source. [Live verification record](playtest/live-publication.json).
+
+## Reproduce locally
+
 Start the static server on port 4174. The optional QA scripts use an installed Playwright module; it is not a game runtime dependency.
 
 ```powershell
