@@ -38,8 +38,6 @@ Also corrected return-to-world copy so it uses the current region rather than al
 
 The full campaign uses normal progression without teacher unlocks. Focused lesson probes and cross-browser smoke tests use the teacher shortcut to reach the relevant chapter quickly. Firefox initially crashed on a blank page inside the workspace sandbox; the isolated-profile retry outside that sandbox passed before any game issue was reported.
 
-## Reproduce
-
 ## GitHub Pages verification
 
 Published to [scriptsherlock/treequest](https://github.com/scriptsherlock/treequest). The [Actions deployment](https://github.com/scriptsherlock/treequest/actions/runs/41307946902) succeeded. The [live adventure](https://scriptsherlock.github.io/treequest/game.html) then passed all **18 full-campaign Chromium checks**, including real incorrect predictions, all five worlds, evidence tools, waves, movement, full screen, cancellation, reload and desktop layouts. No browser exceptions or failed asset responses were recorded. The live lab and original campaign also match their source. [Live verification record](playtest/live-publication.json).
