@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-01T04:06:22.179Z",
+  "kind": "Agent-run Chromium playtest; fresh isolated profiles",
+  "checks": [
+    "World 4 guidance names the real report-check control",
+    "Checking a correct report preserves the learned tree and explains the result",
+    "Exhausted report checks can restart locally without erasing campaign progress",
+    "Wrong report identifies the changed gear, persists the correction and resets stale tree counts",
+    "Verified reports and their corrected label survive reload",
+    "World 5 guidance explains both expeditions, depth 3 and the new evidence",
+    "Reducing depth resets an oversized tree and cannot undo past the depth limit",
+    "Automatic single-branch growth stops when all editable groups are pure",
+    "Keyboard tab navigation keeps selection and focus together",
+    "Mixed leaves and manual split choices work with keyboard only",
+    "A correct final enemy cannot disguise an earlier wave failure; progress and wrong gear are explicit",
+    "Native modal focus stays trapped and optional audio toggles persist",
+    "Export downloads a valid version-2 checkpoint with the actual current tree",
+    "Cancelling the fresh-adventure confirmation preserves the full checkpoint",
+    "Laptop and full-HD journal/modal controls stay inside the viewport",
+    "Operating-system reduced-motion preference disables motion from first load",
+    "No runtime errors or missing assets during exploratory/regression scenarios"
+  ],
+  "errors": [],
+  "missing": [],
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 720,
+      "scrollWidth": 1280,
+      "scrollHeight": 720,
+      "footer": {
+        "x": 33.21723175048828,
+        "y": 625.0960693359375,
+        "width": 1213.5654296875,
+        "height": 71.97418212890625,
+        "top": 625.0960693359375,
+        "right": 1246.7826614379883,
+        "bottom": 697.0702514648438,
+        "left": 33.21723175048828
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "footer": {
+        "x": 64.0245590209961,
+        "y": 673.0097045898438,
+        "width": 1237.9510498046875,
+        "height": 71.99713134765625,
+        "top": 673.0097045898438,
+        "right": 1301.9756088256836,
+        "bottom": 745.0068359375,
+        "left": 64.0245590209961
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "footer": {
+        "x": 341,
+        "y": 979,
+        "width": 1238,
+        "height": 78,
+        "top": 979,
+        "right": 1579,
+        "bottom": 1057,
+        "left": 341
+      }
+    }
+  ]
+}

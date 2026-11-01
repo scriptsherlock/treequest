@@ -1,0 +1,10 @@
+﻿{
+  "downloaded": "2026-11-01",
+  "usage": "Local offline fonts: Cinzel headings; Alegreya Sans body and interface",
+  "license": "SIL Open Font License 1.1; the corresponding OFL and FONTLOG files are included unmodified",
+  "sources": [
+    {"file": "Cinzel-Variable.ttf", "url": "https://github.com/google/fonts/blob/main/ofl/cinzel/Cinzel%5Bwght%5D.ttf"},
+    {"file": "AlegreyaSans-Regular.ttf", "url": "https://github.com/google/fonts/blob/main/ofl/alegreyasans/AlegreyaSans-Regular.ttf"},
+    {"file": "AlegreyaSans-Bold.ttf", "url": "https://github.com/google/fonts/blob/main/ofl/alegreyasans/AlegreyaSans-Bold.ttf"}
+  ]
+}

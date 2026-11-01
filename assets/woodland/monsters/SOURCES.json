@@ -1,0 +1,317 @@
+{
+  "version": 1,
+  "date": "2026-11-01",
+  "direction": "Simple Ava/Max-compatible repaired sprites for all five chapters",
+  "tool": "Built-in image_gen.imagegen (reference-image edits)",
+  "model": "Tool-managed; model version not exposed",
+  "sourceLicense": "References are repository Kenney CC0-derived sprites; original license retained in assets/gear/LICENSE-Kenney-CC0.txt. Generated repairs are recorded separately, not represented as original Kenney artwork.",
+  "normalization": "512x512 WebP; true alpha verified; disconnected alpha specks removed; uniform safe margin and bottom-centre anchor; aspect ratio preserved.",
+  "assets": [
+    {
+      "id": "fire",
+      "path": "assets/woodland/monsters/fire.webp",
+      "reference": "assets/gear/villains/fire.png",
+      "generationFile": "exec-2819d250-647d-45f6-b578-0dd70b338add.png",
+      "prompt": "This is a repair of the attached game sprite, not a change of visual style. Preserve its identity and original flat vector / simple softly shaded cartoon appearance: large expressive eyes, broad simple colour shapes, tiny clean highlights, smooth edges, no painted texture, no realism, no fur or scales, no outlines added. Fix the mangled assembly: draw exactly two anatomically connected arms with complete rounded hands, exactly two connected short legs and complete feet. Keep limbs distinct and avoid detached circles at the joints. The entire character must fit comfortably inside a square canvas with at least 12 percent genuinely transparent margin on every edge. Use the extra canvas space to finish the hands and feet that were cut off by the original image edges. Full body, front view, standing neutral pose, bottom-centre ground anchor. No floor, no scenery, no text, no frame, no shadow baked into the background. Genuinely transparent background. The output must look at home beside the existing simple Ava and Max game characters.\nMaintain the original coral-red rounded egg-shaped fire monster, its two brown eyes with pale mint eyelids, small worried mouth and two white fangs. Arms can be naturally bent beside the torso rather than wildly twisted. Hands have three simple round fingers. No horns, no ears, no wings, no tail.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 1,
+        "clearedSpeckPixels": 59032,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 51,
+          "top": 71.95964125560539,
+          "right": 461,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 28574
+    },
+    {
+      "id": "rock",
+      "path": "assets/woodland/monsters/rock.webp",
+      "reference": "assets/gear/villains/rock.png",
+      "generationFile": "exec-36bcf903-d6c3-4420-a6a0-afcb5001e8b3.png",
+      "prompt": "This is a repair of the attached game sprite, not a change of visual style. Preserve its identity and original flat vector / simple softly shaded cartoon appearance: large expressive eyes, broad simple colour shapes, tiny clean highlights, smooth edges, no painted texture, no realism, no fur or scales, no outlines added. Fix the mangled assembly: draw exactly two anatomically connected arms with complete rounded hands, exactly two connected short legs and complete feet. Keep limbs distinct and avoid detached circles at the joints. The entire character must fit comfortably inside a square canvas with at least 12 percent genuinely transparent margin on every edge. Use the extra canvas space to finish the hands and feet that were cut off by the original image edges. Full body, front view, standing neutral pose, bottom-centre ground anchor. No floor, no scenery, no text, no frame, no shadow baked into the background. Genuinely transparent background. The output must look at home beside the existing simple Ava and Max game characters.\nMaintain the original warm grey rounded-rectangle stone monster, its two green eyes, cheerful mouth and two white teeth. Give its stone body simple coherent short arms and sturdy short legs. No horns, no ears, no wings, no tail.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 1,
+        "clearedSpeckPixels": 12379,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 51,
+          "top": 134.33619210977702,
+          "right": 461,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 22496
+    },
+    {
+      "id": "fire-horns",
+      "path": "assets/woodland/monsters/fire-horns.webp",
+      "reference": "assets/gear/villains/fire-horns.png",
+      "generationFile": "exec-0ca71026-bf68-4aba-ba46-b26b30cb4232.png",
+      "prompt": "This is a repair of the attached game sprite, not a change of visual style. Preserve its identity and original flat vector / simple softly shaded cartoon appearance: large expressive eyes, broad simple colour shapes, tiny clean highlights, smooth edges, no painted texture, no realism, no fur or scales, no outlines added. Fix the mangled assembly: draw exactly two anatomically connected arms with complete rounded hands, exactly two connected short legs and complete feet. Keep limbs distinct and avoid detached circles at the joints. The entire character must fit comfortably inside a square canvas with at least 12 percent genuinely transparent margin on every edge. Use the extra canvas space to finish the hands and feet that were cut off by the original image edges. Full body, front view, standing neutral pose, bottom-centre ground anchor. No floor, no scenery, no text, no frame, no shadow baked into the background. Genuinely transparent background. The output must look at home beside the existing simple Ava and Max game characters.\nMaintain the original coral-red rounded egg-shaped fire monster, its two brown eyes with pale mint eyelids, small worried mouth and two white fangs. Arms can be naturally bent beside the torso. Hands have three simple round fingers. Preserve TWO clearly visible short pointed coral-red horns on top, smoothly joined to the head. The horns must have complete tips inside the transparent margin. No ears, no wings, no tail.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 1,
+        "clearedSpeckPixels": 18251,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 89.07142857142858,
+          "top": 51,
+          "right": 422.92857142857144,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 27356
+    },
+    {
+      "id": "rock-horns",
+      "path": "assets/woodland/monsters/rock-horns.webp",
+      "reference": "assets/gear/villains/rock-horns.png",
+      "generationFile": "exec-c66efb75-6202-4d45-9a9e-7b31b50e7e87.png",
+      "prompt": "This is a repair of the attached game sprite, not a change of visual style. Preserve its identity and original flat vector / simple softly shaded cartoon appearance: large expressive eyes, broad simple colour shapes, tiny clean highlights, smooth edges, no painted texture, no realism, no fur or scales, no outlines added. Fix the mangled assembly: draw exactly two anatomically connected arms with complete rounded hands, exactly two connected short legs and complete feet. Keep limbs distinct and avoid detached circles at the joints. The entire character must fit comfortably inside a square canvas with at least 12 percent genuinely transparent margin on every edge. Use the extra canvas space to finish the hands and feet that were cut off by the original image edges. Full body, front view, standing neutral pose, bottom-centre ground anchor. No floor, no scenery, no text, no frame, no shadow baked into the background. Genuinely transparent background. The output must look at home beside the existing simple Ava and Max game characters.\nMaintain the original warm grey rounded-rectangle stone monster, its two green eyes, cheerful mouth and two white teeth. Give its stone body simple coherent short arms and sturdy short legs. Preserve TWO clearly visible short pointed grey stone horns on top, smoothly joined to the head. The horns must have complete tips inside the transparent margin. No ears, no wings, no tail.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 1,
+        "clearedSpeckPixels": 40770,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 51,
+          "top": 103.51231527093597,
+          "right": 461,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 24410
+    },
+    {
+      "id": "sky",
+      "reference": "assets/gear/villains/sky.png",
+      "prompt": "Repair the attached mangled monster sprite for a browser fantasy game, matching its existing simple flat cartoon art style and the familiar Ava/Max game characters. Preserve its original body colour, face, eye count and identity. Rebuild exactly two naturally connected short arms with complete rounded mitten hands and exactly two sturdy connected short legs with complete feet. Avoid twisted assembly joints and detached circles. Keep the whole creature fully visible inside a square image, with 12 percent transparent margin on all sides, a bottom-centre ground anchor, and a neutral front-facing stance. Flat vector-like colour shapes, restrained soft highlights, no outlines, no painted texture, no realism. Genuinely transparent background. No floor, scenery, text or border. Keep its cheerful turquoise round cyclops body and one big central eye. Replace the awkward long insect limbs with compact friendly limbs. No horns or ears. No wings.",
+      "path": "assets/woodland/monsters/sky.webp",
+      "generationFile": "exec-f38c8e84-83eb-4fc2-a14a-bd9d796c4498.png",
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 3,
+        "clearedSpeckPixels": 9951,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 63.03308431163288,
+          "top": 51,
+          "right": 448.9669156883671,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 26412
+    },
+    {
+      "id": "sky-horns",
+      "reference": "assets/gear/villains/sky-horns.png",
+      "prompt": "Repair the attached mangled monster sprite for a browser fantasy game, matching its existing simple flat cartoon art style and the familiar Ava/Max game characters. Preserve its original body colour, face, eye count and identity. Rebuild exactly two naturally connected short arms with complete rounded mitten hands and exactly two sturdy connected short legs with complete feet. Avoid twisted assembly joints and detached circles. Keep the whole creature fully visible inside a square image, with 12 percent transparent margin on all sides, a bottom-centre ground anchor, and a neutral front-facing stance. Flat vector-like colour shapes, restrained soft highlights, no outlines, no painted texture, no realism. Genuinely transparent background. No floor, scenery, text or border. Keep its cheerful turquoise round cyclops body and one big central eye. Replace the awkward long insect limbs with compact friendly limbs. Preserve exactly two very clearly visible short pointed horns on top of its head, including complete tips. No wings.",
+      "path": "assets/woodland/monsters/sky-horns.webp",
+      "generationFile": "exec-57df99d5-e9f5-4878-b6be-c6b59059b7db.png",
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 1,
+        "clearedSpeckPixels": 9239,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 61.659238625812435,
+          "top": 51,
+          "right": 450.34076137418754,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 25306
+    },
+    {
+      "id": "shadow",
+      "reference": "assets/gear/villains/shadow.png",
+      "prompt": "Repair the attached mangled monster sprite for a browser fantasy game, matching its existing simple flat cartoon art style and the familiar Ava/Max game characters. Preserve its original body colour, face, eye count and identity. Rebuild exactly two naturally connected short arms with complete rounded mitten hands and exactly two sturdy connected short legs with complete feet. Avoid twisted assembly joints and detached circles. Keep the whole creature fully visible inside a square image, with 12 percent transparent margin on all sides, a bottom-centre ground anchor, and a neutral front-facing stance. Flat vector-like colour shapes, restrained soft highlights, no outlines, no painted texture, no realism. Genuinely transparent background. No floor, scenery, text or border. Keep its dark brown charcoal oval body, two large golden eyes and mischievous pink tongue. Keep a simple soft ragged body edge. No horns or ears. No wings.",
+      "path": "assets/woodland/monsters/shadow.webp",
+      "generationFile": "exec-c2f78d09-0839-4c05-90f7-00a3f58aa434.png",
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 1,
+        "clearedSpeckPixels": 16811,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 64.03686635944703,
+          "top": 51.00000000000006,
+          "right": 447.963133640553,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 26244
+    },
+    {
+      "id": "shadow-horns",
+      "reference": "assets/gear/villains/shadow-horns.png",
+      "prompt": "Repair the attached mangled monster sprite for a browser fantasy game, matching its existing simple flat cartoon art style and the familiar Ava/Max game characters. Preserve its original body colour, face, eye count and identity. Rebuild exactly two naturally connected short arms with complete rounded mitten hands and exactly two sturdy connected short legs with complete feet. Avoid twisted assembly joints and detached circles. Keep the whole creature fully visible inside a square image, with 12 percent transparent margin on all sides, a bottom-centre ground anchor, and a neutral front-facing stance. Flat vector-like colour shapes, restrained soft highlights, no outlines, no painted texture, no realism. Genuinely transparent background. No floor, scenery, text or border. Keep its dark brown charcoal oval body, two large golden eyes and mischievous pink tongue. Keep a simple soft ragged body edge. Preserve exactly two very clearly visible short pointed horns on top of its head, including complete tips. No wings.",
+      "path": "assets/woodland/monsters/shadow-horns.webp",
+      "generationFile": "exec-98464054-cc5a-4451-8897-203a70c838dd.png",
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 1,
+        "clearedSpeckPixels": 19430,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 100.85111662531017,
+          "top": 51,
+          "right": 411.14888337468983,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 28684
+    },
+    {
+      "id": "phoenix",
+      "reference": "assets/gear/villains/phoenix.png",
+      "prompt": "Repair the attached mangled monster sprite for a browser fantasy game, matching its existing simple flat cartoon art style and the familiar Ava/Max game characters. Preserve its original body colour, face, eye count and identity. Rebuild exactly two naturally connected short arms with complete rounded mitten hands and exactly two sturdy connected short legs with complete feet. Avoid twisted assembly joints and detached circles. Keep the whole creature fully visible inside a square image, with 12 percent transparent margin on all sides, a bottom-centre ground anchor, and a neutral front-facing stance. Flat vector-like colour shapes, restrained soft highlights, no outlines, no painted texture, no realism. Genuinely transparent background. No floor, scenery, text or border. Keep its golden-yellow oval body, two coral-red eye patches, two dark pupils, open worried mouth and small antennae. No horns or ears. No wings.",
+      "path": "assets/woodland/monsters/phoenix.webp",
+      "generationFile": "exec-5d10a24c-4fda-46da-b4f4-7aedda52e9c0.png",
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 1,
+        "clearedSpeckPixels": 16760,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 95.05861456483126,
+          "top": 51,
+          "right": 416.94138543516874,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 27988
+    },
+    {
+      "id": "phoenix-horns",
+      "reference": "assets/gear/villains/phoenix-horns.png",
+      "prompt": "Repair the attached mangled monster sprite for a browser fantasy game, matching its existing simple flat cartoon art style and the familiar Ava/Max game characters. Preserve its original body colour, face, eye count and identity. Rebuild exactly two naturally connected short arms with complete rounded mitten hands and exactly two sturdy connected short legs with complete feet. Avoid twisted assembly joints and detached circles. Keep the whole creature fully visible inside a square image, with 12 percent transparent margin on all sides, a bottom-centre ground anchor, and a neutral front-facing stance. Flat vector-like colour shapes, restrained soft highlights, no outlines, no painted texture, no realism. Genuinely transparent background. No floor, scenery, text or border. Keep its golden-yellow oval body, two coral-red eye patches, two dark pupils, open worried mouth and small antennae. Preserve exactly two very clearly visible short pointed horns on top of its head, including complete tips. No wings.",
+      "path": "assets/woodland/monsters/phoenix-horns.webp",
+      "generationFile": "exec-d4c5f6e5-84b6-4308-92b0-70505e31e6dc.png",
+      "review": "Inspected as a family and in the five-chapter desktop browser playthrough",
+      "qa": {
+        "sourceWidth": 1254,
+        "sourceHeight": 1254,
+        "minAlpha": 0,
+        "maxAlpha": 255,
+        "components": 1,
+        "clearedSpeckPixels": 21664,
+        "width": 512,
+        "height": 512,
+        "subjectBounds": {
+          "left": 69.44473007712082,
+          "top": 51,
+          "right": 442.5552699228792,
+          "bottom": 461
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.9
+        }
+      },
+      "bytes": 31916
+    }
+  ]
+}

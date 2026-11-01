@@ -1,0 +1,26 @@
+[
+  {
+    "engine": "firefox",
+    "checks": [
+      "Initial modal, local fonts and full-screen shell",
+      "Keyboard menus, manual split, chapter travel, scouting and automatic growth",
+      "All six enemies, wave results, world return and saved chapter reload",
+      "No document overflow, runtime errors or missing assets"
+    ],
+    "errors": [],
+    "missing": [],
+    "status": "pass"
+  },
+  {
+    "engine": "webkit",
+    "checks": [
+      "Initial modal, local fonts and full-screen shell",
+      "Keyboard menus, manual split, chapter travel, scouting and automatic growth",
+      "All six enemies, wave results, world return and saved chapter reload",
+      "No document overflow, runtime errors or missing assets"
+    ],
+    "errors": [],
+    "missing": [],
+    "status": "pass"
+  }
+]

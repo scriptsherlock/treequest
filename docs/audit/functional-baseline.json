@@ -1,0 +1,270 @@
+{
+  "assets": [
+    {
+      "path": "villains/fire-horns.png",
+      "bytes": 62413,
+      "width": 440,
+      "height": 432
+    },
+    {
+      "path": "villains/fire.png",
+      "bytes": 55146,
+      "width": 440,
+      "height": 366
+    },
+    {
+      "path": "villains/phoenix-horns.png",
+      "bytes": 54676,
+      "width": 436,
+      "height": 480
+    },
+    {
+      "path": "villains/phoenix.png",
+      "bytes": 55089,
+      "width": 439,
+      "height": 480
+    },
+    {
+      "path": "villains/rock-horns.png",
+      "bytes": 52683,
+      "width": 440,
+      "height": 419
+    },
+    {
+      "path": "villains/rock.png",
+      "bytes": 45325,
+      "width": 440,
+      "height": 347
+    },
+    {
+      "path": "villains/shadow-horns.png",
+      "bytes": 59683,
+      "width": 391,
+      "height": 480
+    },
+    {
+      "path": "villains/shadow.png",
+      "bytes": 56890,
+      "width": 440,
+      "height": 474
+    },
+    {
+      "path": "villains/sky-horns.png",
+      "bytes": 60403,
+      "width": 428,
+      "height": 480
+    },
+    {
+      "path": "villains/sky.png",
+      "bytes": 57980,
+      "width": 440,
+      "height": 468
+    },
+    {
+      "path": "places/castles.jpg",
+      "bytes": 9379
+    },
+    {
+      "path": "places/desert.jpg",
+      "bytes": 12521
+    },
+    {
+      "path": "places/fall.jpg",
+      "bytes": 17340
+    },
+    {
+      "path": "places/forest.jpg",
+      "bytes": 19487
+    },
+    {
+      "path": "places/grass.jpg",
+      "bytes": 17178
+    },
+    {
+      "path": "icons/award.png",
+      "bytes": 1460,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/book_open.png",
+      "bytes": 767,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/bow.png",
+      "bytes": 994,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/crown_a.png",
+      "bytes": 1017,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/fire.png",
+      "bytes": 1026,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/flask_full.png",
+      "bytes": 1211,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/hammer.svg",
+      "bytes": 271
+    },
+    {
+      "path": "icons/notepad_write.png",
+      "bytes": 1218,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/shield.png",
+      "bytes": 913,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/skull.png",
+      "bytes": 935,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/suit_hearts.png",
+      "bytes": 798,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/suit_hearts_broken.png",
+      "bytes": 1079,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/sword.png",
+      "bytes": 746,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "path": "icons/wise-tree.png",
+      "bytes": 2732,
+      "width": 94,
+      "height": 204
+    },
+    {
+      "path": "heroes/femaleAdventurer-attack1.png",
+      "bytes": 7767,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "path": "heroes/femaleAdventurer-cheer0.png",
+      "bytes": 7067,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "path": "heroes/femaleAdventurer-hurt.png",
+      "bytes": 6377,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "path": "heroes/femaleAdventurer-idle.png",
+      "bytes": 7948,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "path": "heroes/maleAdventurer-attack1.png",
+      "bytes": 7853,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "path": "heroes/maleAdventurer-cheer0.png",
+      "bytes": 7030,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "path": "heroes/maleAdventurer-hurt.png",
+      "bytes": 6919,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "path": "heroes/maleAdventurer-idle.png",
+      "bytes": 8010,
+      "width": 192,
+      "height": 256
+    }
+  ],
+  "goodRun": {
+    "outcomes": [
+      "💥 Hit! Scorch Lizard is beaten!\nThe Ice Sword was the right choice.",
+      "💥 Hit! Granite Ogre is beaten!\nThe Rock Hammer was the right choice.",
+      "💥 Hit! Granite Troll is beaten!\nThe Rock Hammer was the right choice.",
+      "💥 Hit! Ember Lizard is beaten!\nThe Ice Sword was the right choice.",
+      "💥 Hit! Granite Giant is beaten!\nThe Rock Hammer was the right choice.",
+      "💥 Hit! Lava King is beaten!\nThe Ice Sword was the right choice."
+    ],
+    "result": "Victory!\n★★★\nWhat you learned: Learning from examples\nTraining data\n\nThe Wise Tree never saw the Lava King before. It learned a rule from the scout notes, then used it on a new villain. That is what machine learning is!\n\nNext level ▶ 🗺️ Map"
+  },
+  "weakRun": [
+    "😵 Miss! Scorch Lizard was too strong.\nIt needed the Ice Sword, not the Rock Hammer.",
+    "💥 Hit! Granite Ogre is beaten!\nThe Rock Hammer was the right choice.",
+    "😵 Miss! Granite Troll was too strong.\nIt needed the Rock Hammer, not the Ice Sword.",
+    "💥 Hit! Ember Lizard is beaten!\nThe Ice Sword was the right choice.",
+    "😵 Miss! Granite Giant was too strong.\nIt needed the Rock Hammer, not the Ice Sword."
+  ],
+  "numerical": {
+    "training": {
+      "correct": 10,
+      "total": 10
+    },
+    "wave": [
+      {
+        "name": "Scorch Lizard",
+        "prediction": "Ice Sword",
+        "correct": "Ice Sword"
+      },
+      {
+        "name": "Granite Ogre",
+        "prediction": "Rock Hammer",
+        "correct": "Rock Hammer"
+      },
+      {
+        "name": "Granite Troll",
+        "prediction": "Rock Hammer",
+        "correct": "Rock Hammer"
+      },
+      {
+        "name": "Ember Lizard",
+        "prediction": "Ice Sword",
+        "correct": "Ice Sword"
+      },
+      {
+        "name": "Granite Giant",
+        "prediction": "Rock Hammer",
+        "correct": "Rock Hammer"
+      },
+      {
+        "name": "Lava King",
+        "prediction": "Ice Sword",
+        "correct": "Ice Sword"
+      }
+    ]
+  }
+}

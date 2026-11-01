@@ -1,0 +1,10 @@
+{
+  "hint4": "The tree believes every note, even the wrong ones. Use the magnifier to check Pips notes about horned trolls.",
+  "hint5": "One example is not enough. Send the scouts to find more shadow villains.",
+  "exhausted": {
+    "counter": "0 report checks left · verify notes in the journal",
+    "wrongReportDisabled": true,
+    "resetAvailable": 0
+  },
+  "errors": []
+}

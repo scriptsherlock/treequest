@@ -1,6 +1,22 @@
 # Tree Quest — Decision tree lab
 
-**New: [Gear Up](game.html)** is a five-level battle game built on the same engine. Players teach the Wise Tree from scout notes, then it picks weapons against new villains. Each level teaches one idea: training data, underfitting, missing features, noisy labels and imbalanced data. Level data and the hidden rule live in `quest-data.js`; art is Kenney.nl (CC0) in `assets/gear/`. Add `#teacher` to the URL for answers and to unlock every level.
+Play the [full-screen fantasy adventure](https://scriptsherlock.github.io/treequest/game.html), the [original campaign](https://scriptsherlock.github.io/treequest/campaign.html), or the [decision tree lab](https://scriptsherlock.github.io/treequest/). Source: [scriptsherlock/treequest](https://github.com/scriptsherlock/treequest).
+
+**[Tree Quest: The Living Kingdom](game.html)** is now a full-screen desktop fantasy adventure. Explore with clicks or WASD/arrows, approach creatures and press **E / Engage**, then teach the Wise Tree to equip your hero. A brass-and-ink HUD anchors quests, hero status, command buttons and a minimap to the screen edges; local Cinzel and Alegreya Sans fonts work offline.
+
+The five chapters use the existing educational datasets: training examples, underfitting, missing features, noisy labels and rare classes. Select mixed leaves to add questions, choose a depth limit, undo, or let the learner grow branches. Enemy waves grow from one creature to three and then six, with the same trained tree predicting gear separately for each enemy. Reveal a missing clue, verify reports and send scouts in the later lessons. Clear each encounter or wave to unlock the next chapter. See [expansion notes](docs/FULLSCREEN_EXPANSION.md).
+
+The [original five-level campaign](campaign.html) still teaches training data, underfitting, missing features, noisy labels and imbalanced data. Add `#teacher` for its answers/unlocks. The standalone lab below is unchanged. Art: Kenney.nl (CC0), plus an original SVG map.
+
+To run the adventure from PowerShell (no install step):
+
+```powershell
+cd E:\Turing\DecisionTree
+$env:PORT = '4174'
+npm start
+```
+
+Open **http://127.0.0.1:4174/game.html**. Stop with Ctrl+C. The normal default port is 4173; use a free port if another project is already using it.
 
 A hands-on HTML/CSS/JavaScript decision tree lab for Years 6–9, with an original blocky game theme, local monospace fonts and emoji item icons. No build step, accounts, API keys, packages, analytics or runtime network requests.
 
@@ -36,7 +52,7 @@ Changing data resets the tree and test scores, so a tree cannot silently keep ol
 
 ## Publish on GitHub Pages
 
-The folder supplied in this workspace has no `.git` checkout or configured remote. Create a GitHub repository (or copy the files into your existing repository) and push them there.
+This checkout is configured for `scriptsherlock/treequest`. Push changes to the intended branch when you are ready to publish.
 
 **Included deployment workflow (recommended):**
 
@@ -74,6 +90,6 @@ Test results are only evidence for the small supplied test set. Once pupils use 
 npm run check
 ```
 
-Tests cover manual splits, numeric boundaries, stepwise and complete training, depth limits, contradictory data, save/open reconstruction, malformed input and separation of test data. `npm run package` copies the static website into `dist/`.
+The 24 tests cover classifier behaviour and data separation, world movement/collision/pathfinding, genuine prediction outcomes, immutable wave evidence, chapter travel, legacy-save migration, evidence tools and checkpoint validation. `npm run package` copies the static website into `dist/`.
 
 The app is keyboard accessible, supports reduced motion, responsive layouts and native modal focus handling. It uses local system fonts and SVG diagrams, with text labels alongside colours.

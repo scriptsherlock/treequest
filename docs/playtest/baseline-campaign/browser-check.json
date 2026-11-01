@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-01T03:40:21.919Z",
+  "checks": [
+    "World fills the viewport; local fantasy fonts load; no document scrolling",
+    "WASD and click-to-walk remain correct after world scaling",
+    "F enters and leaves browser full screen",
+    "Weak first question still produces a real wrong-equipment loss",
+    "First victory unlocks Skyreach and returns to the exact world position",
+    "A depth-one tree fails the three-enemy wave and does not unlock a chapter",
+    "Manual mixed-leaf questions, second branches, depth selection and undo work",
+    "Wave loadout previews trace real predictions; each enemy equips its own predicted gear",
+    "Missing shadow feature causes genuine failures in the six-enemy wave",
+    "Recovering the feature enables a three-question tree that clears all six enemies",
+    "Verifying noisy labels resets the evidence and supports a successful manually built wave tree",
+    "Rare-class scouting and the Shadow King wave complete the five-chapter campaign",
+    "Reload preserves all five chapters, the current tree, evidence and hero",
+    "Kingdom travel restores each chapter’s separate trained tree",
+    "Leaving a wave cancels delayed combat resolution",
+    "Dialogs clear held movement; keyboard/reduced-motion menus open instantly",
+    "1280x720 and 1920x1080: no scrolling, separated corner HUDs and reachable modal actions",
+    "No browser exceptions or missing local assets through all five chapters"
+  ],
+  "errors": [],
+  "missing": [],
+  "chapters": [
+    {
+      "level": 0,
+      "wave": 1,
+      "cleared": true
+    },
+    {
+      "level": 1,
+      "wave": 3,
+      "cleared": true
+    },
+    {
+      "level": 2,
+      "wave": 6,
+      "cleared": true
+    },
+    {
+      "level": 3,
+      "wave": 6,
+      "cleared": true
+    },
+    {
+      "level": 4,
+      "wave": 6,
+      "cleared": true
+    }
+  ],
+  "viewports": [
+    {
+      "w": 1280,
+      "h": 720,
+      "sw": 1280,
+      "sh": 720,
+      "quest": {
+        "x": 1002,
+        "y": 102,
+        "width": 250,
+        "height": 327.78125,
+        "top": 102,
+        "right": 1252,
+        "bottom": 429.78125,
+        "left": 1002
+      },
+      "minimap": {
+        "x": 1048,
+        "y": 537,
+        "width": 204,
+        "height": 151,
+        "top": 537,
+        "right": 1252,
+        "bottom": 688,
+        "left": 1048
+      },
+      "dock": {
+        "x": 411,
+        "y": 592,
+        "width": 458,
+        "height": 96,
+        "top": 592,
+        "right": 869,
+        "bottom": 688,
+        "left": 411
+      },
+      "hero": {
+        "x": 28,
+        "y": 568,
+        "width": 284,
+        "height": 120,
+        "top": 568,
+        "right": 312,
+        "bottom": 688,
+        "left": 28
+      }
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "sw": 1920,
+      "sh": 1080,
+      "quest": {
+        "x": 1606,
+        "y": 116,
+        "width": 286,
+        "height": 334.59375,
+        "top": 116,
+        "right": 1892,
+        "bottom": 450.59375,
+        "left": 1606
+      },
+      "minimap": {
+        "x": 1688,
+        "y": 892,
+        "width": 204,
+        "height": 151,
+        "top": 892,
+        "right": 1892,
+        "bottom": 1043,
+        "left": 1688
+      },
+      "dock": {
+        "x": 731,
+        "y": 947,
+        "width": 458,
+        "height": 96,
+        "top": 947,
+        "right": 1189,
+        "bottom": 1043,
+        "left": 731
+      },
+      "hero": {
+        "x": 28,
+        "y": 923,
+        "width": 284,
+        "height": 120,
+        "top": 923,
+        "right": 312,
+        "bottom": 1043,
+        "left": 28
+      }
+    }
+  ]
+}

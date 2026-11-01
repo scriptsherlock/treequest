@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-01",
+  "method": "Agent-operated automated browser playtesting in fresh isolated contexts. No outside human participants.",
+  "fullCampaignChecks": 18,
+  "exploratoryRegressionChecks": 17,
+  "totalChromiumChecks": 35,
+  "unitTests": {
+    "passed": 24,
+    "failed": 0
+  },
+  "crossBrowser": [
+    {
+      "engine": "firefox",
+      "status": "pass",
+      "groups": 4
+    },
+    {
+      "engine": "webkit",
+      "status": "pass",
+      "groups": 4
+    }
+  ],
+  "package": {
+    "runtimeFiles": 16,
+    "assetFiles": 57,
+    "packageMatchesSource": true,
+    "packagedBrowserSmoke": true,
+    "legacyMigration": true,
+    "backupRecovery": true,
+    "storageDeniedPlayable": true,
+    "originalEngineLabAndCampaignUnchanged": true,
+    "errors": [],
+    "missing": []
+  },
+  "issuesFixed": 5,
+  "blockersInTestedScenarios": 0,
+  "desktopSizes": [
+    "1280x720",
+    "1366x768",
+    "1440x900",
+    "1920x1080"
+  ],
+  "screenshotsReviewed": [
+    "after-campaign/09-shadow-king.png",
+    "regressions/01-corrected-report.png",
+    "regressions/03-partial-wave-is-not-victory.png",
+    "cross-browser/webkit-tree.png"
+  ]
+}

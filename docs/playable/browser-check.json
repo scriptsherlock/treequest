@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-01T01:39:51.681Z",
+  "checks": [
+    "Ava/Max selection and explicit beginning",
+    "Arrow-key movement",
+    "WASD movement",
+    "Waypoint pathfinding; proximity never auto-starts a fight",
+    "Chest reveals the actual weak prediction without modifying the tree",
+    "Wrong gear loses one heart and explains the required gear",
+    "Improved split wins; return preserves exact world position",
+    "Reload restores hero, position, trained question and victories",
+    "Leaving an active battle cancels its delayed resolution",
+    "Dialogs suspend movement, clear held input and support reduced motion",
+    "Click-to-walk settles at arbitrary ground destinations",
+    "Window blur clears movement",
+    "Desktop 1440x900 and 1280x720: no horizontal overflow; tuning action accessible",
+    "No runtime exceptions or missing local assets",
+    "Corrupt saves recover to a playable new adventure",
+    "Storage-denied browsers can play and reset"
+  ],
+  "errors": [],
+  "networkFailures": [],
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "document": 1440,
+      "world": {
+        "x": 43,
+        "y": 248.59375,
+        "width": 1059,
+        "height": 600,
+        "top": 248.59375,
+        "right": 1102,
+        "bottom": 848.59375,
+        "left": 43
+      }
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "document": 1280,
+      "world": {
+        "x": 43,
+        "y": 206.09375,
+        "width": 899,
+        "height": 455,
+        "top": 206.09375,
+        "right": 942,
+        "bottom": 661.09375,
+        "left": 43
+      }
+    }
+  ],
+  "packaging": {
+    "runtimeFiles": 15,
+    "assets": 38,
+    "originalCampaignPreserved": true,
+    "engineAndLabUnchanged": true
+  }
+}

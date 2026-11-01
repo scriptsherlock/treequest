@@ -5,8 +5,8 @@
   "description": "A buildless decision tree classroom lab for Years 6–9",
   "scripts": {
     "start": "node scripts/serve.cjs",
-    "test": "node --test tests/classifier.test.cjs",
-    "check": "node --check classifier.js && node --check app.js && node --check quest-data.js && node --check game.js && node --test tests/classifier.test.cjs",
+    "test": "node --test tests/classifier.test.cjs tests/adventure.test.cjs",
+    "check": "node --check classifier.js && node --check app.js && node --check quest-data.js && node --check game.js && node --check adventure-core.js && node --check adventure-save.js && node --check adventure-art.js && node --check adventure.js && node --test tests/classifier.test.cjs tests/adventure.test.cjs",
     "package": "node scripts/package.cjs"
   }
 }

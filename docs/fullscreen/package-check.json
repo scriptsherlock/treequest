@@ -1,0 +1,12 @@
+{
+  "runtimeFiles": 16,
+  "assetFiles": 57,
+  "packageMatchesSource": true,
+  "packagedBrowserSmoke": true,
+  "legacyMigration": true,
+  "backupRecovery": true,
+  "storageDeniedPlayable": true,
+  "originalEngineLabAndCampaignUnchanged": true,
+  "errors": [],
+  "missing": []
+}

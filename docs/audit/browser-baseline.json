@@ -1,0 +1,198 @@
+{
+  "date": "2026-11-01",
+  "browser": "149.0.7827.55",
+  "results": [
+    {
+      "label": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "title": {
+        "width": 1440,
+        "scroll": 1440,
+        "height": 900,
+        "scrollHeight": 900
+      },
+      "camp": {
+        "width": 1440,
+        "scroll": 1440,
+        "height": 900,
+        "scrollHeight": 900,
+        "tree": {
+          "x": 488.46875,
+          "y": 124.78125,
+          "width": 539.53125,
+          "height": 182.40625,
+          "top": 124.78125,
+          "right": 1028,
+          "bottom": 307.1875,
+          "left": 488.46875
+        },
+        "notes": {
+          "x": 56,
+          "y": 74.59375,
+          "width": 401.46875,
+          "height": 750,
+          "top": 74.59375,
+          "right": 457.46875,
+          "bottom": 824.59375,
+          "left": 56
+        }
+      },
+      "battle": {
+        "width": 1440,
+        "scroll": 1440,
+        "scrollHeight": 900,
+        "copy": "Scorch Beast appears!\nThe Wise Tree is thinking…"
+      },
+      "errors": [],
+      "failed": [],
+      "brokenImages": []
+    },
+    {
+      "label": "laptop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "title": {
+        "width": 1280,
+        "scroll": 1280,
+        "height": 720,
+        "scrollHeight": 720
+      },
+      "camp": {
+        "width": 1280,
+        "scroll": 1280,
+        "height": 720,
+        "scrollHeight": 720,
+        "tree": {
+          "x": 423.75,
+          "y": 124.78125,
+          "width": 504.25,
+          "height": 170.484375,
+          "top": 124.78125,
+          "right": 928,
+          "bottom": 295.265625,
+          "left": 423.75
+        },
+        "notes": {
+          "x": 16,
+          "y": 74.59375,
+          "width": 376.75,
+          "height": 570,
+          "top": 74.59375,
+          "right": 392.75,
+          "bottom": 644.59375,
+          "left": 16
+        }
+      },
+      "battle": {
+        "width": 1280,
+        "scroll": 1280,
+        "scrollHeight": 779,
+        "copy": "Cinder Drake appears!\nThe Wise Tree is thinking…"
+      },
+      "errors": [],
+      "failed": [],
+      "brokenImages": []
+    },
+    {
+      "label": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "title": {
+        "width": 768,
+        "scroll": 768,
+        "height": 1024,
+        "scrollHeight": 1024
+      },
+      "camp": {
+        "width": 768,
+        "scroll": 768,
+        "height": 1024,
+        "scrollHeight": 1416,
+        "tree": {
+          "x": 408,
+          "y": 124.78125,
+          "width": 327,
+          "height": 110.546875,
+          "top": 124.78125,
+          "right": 735,
+          "bottom": 235.328125,
+          "left": 408
+        },
+        "notes": {
+          "x": 16,
+          "y": 74.59375,
+          "width": 361,
+          "height": 874,
+          "top": 74.59375,
+          "right": 377,
+          "bottom": 948.59375,
+          "left": 16
+        }
+      },
+      "battle": {
+        "width": 768,
+        "scroll": 768,
+        "scrollHeight": 1074,
+        "copy": "Magma Beast appears!\nThe Wise Tree is thinking…"
+      },
+      "errors": [],
+      "failed": [],
+      "brokenImages": []
+    },
+    {
+      "label": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "title": {
+        "width": 390,
+        "scroll": 457,
+        "height": 844,
+        "scrollHeight": 954
+      },
+      "camp": {
+        "width": 390,
+        "scroll": 508,
+        "height": 844,
+        "scrollHeight": 1548,
+        "tree": {
+          "x": 33,
+          "y": 853.96875,
+          "width": 324,
+          "height": 109.53125,
+          "top": 853.96875,
+          "right": 357,
+          "bottom": 963.5,
+          "left": 33
+        },
+        "notes": {
+          "x": 16,
+          "y": 95.78125,
+          "width": 358,
+          "height": 694,
+          "top": 95.78125,
+          "right": 374,
+          "bottom": 789.78125,
+          "left": 16
+        }
+      },
+      "battle": {
+        "width": 390,
+        "scroll": 594,
+        "scrollHeight": 862,
+        "copy": "Cinder Imp appears!\nThe Wise Tree is thinking…"
+      },
+      "errors": [],
+      "failed": [],
+      "brokenImages": []
+    }
+  ]
+}
