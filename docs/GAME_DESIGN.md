@@ -1,6 +1,6 @@
-﻿# Game design
+# Game design
 
-The player is a Treekeeper: explore, observe, teach the Wise Tree, receive its chosen gear, and test the prediction in battle. plan.md and quest-data.js are authoritative. This specifies future implementation; no new gameplay ships in this planning pass.
+The player is a Treekeeper: explore, observe, teach the Wise Tree, receive its chosen gear, and test the prediction in battle. The original brief and quest-data.js are authoritative. This specifies future implementation; no new gameplay ships in this planning pass.
 
 ## First slice
 

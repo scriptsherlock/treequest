@@ -1,6 +1,6 @@
-﻿# UI and motion review
+# UI and motion review
 
-Read with REPO_AUDIT.md. This reviews the existing game; corrections are planned, not applied, because plan.md's first task stops after audit/documentation.
+Read with REPO_AUDIT.md. This reviews the existing game; corrections are planned, not applied, because the brief's first task stops after audit/documentation.
 
 | Before | After (proposed) | Why |
 | --- | --- | --- |

@@ -1,6 +1,6 @@
-﻿# Repository audit
+# Repository audit
 
-Audited 1 November 2026 against plan.md. Scope: its FIRST TASK, audit and documentation only. Production source is preserved.
+Audited 1 November 2026 against the original brief. Scope: its FIRST TASK, audit and documentation only. Production source is preserved.
 
 ## Actual implementation
 
